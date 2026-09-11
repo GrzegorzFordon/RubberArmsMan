@@ -1,0 +1,73 @@
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://b4toco251ftir"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_m4x7e"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vt4ob"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hgeoe"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_tk7xo"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_scl1n"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dhkrs"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_5xdhn"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4jyny"]
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_vh8xy"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_qjcj6"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4ycey"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ria0w"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lyhyx"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xeyyg"]
+animation = &"Jog_Fwd"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_8cim4"]
+min_space = 0.0
+blend_point_0/node = SubResource("AnimationNodeAnimation_ria0w")
+blend_point_0/pos = 0.0
+blend_point_0/name = &"Idle"
+blend_point_1/node = SubResource("AnimationNodeAnimation_lyhyx")
+blend_point_1/pos = 0.5
+blend_point_1/name = &"Walk"
+blend_point_2/node = SubResource("AnimationNodeAnimation_xeyyg")
+blend_point_2/pos = 1.0
+blend_point_2/name = &"Jog_Fwd"
+
+[resource]
+resource_local_to_scene = true
+nodes/output/position = Vector2(22.222223, 88.88889)
+nodes/idle_walk_run_blend/node = SubResource("AnimationNodeBlendSpace1D_8cim4")
+nodes/idle_walk_run_blend/position = Vector2(-1130.2819, 88.424515)
+nodes/filtered_blend/node = SubResource("AnimationNodeBlend2_vt4ob")
+nodes/filtered_blend/position = Vector2(-911.11115, 88.88889)
+nodes/full_blend/node = SubResource("AnimationNodeBlend2_5xdhn")
+nodes/full_blend/position = Vector2(-733.3334, 88.88889)
+nodes/filtered_one_shot/node = SubResource("AnimationNodeOneShot_scl1n")
+nodes/filtered_one_shot/position = Vector2(-555.55554, 88.88889)
+nodes/full_one_shot/node = SubResource("AnimationNodeOneShot_qjcj6")
+nodes/full_one_shot/position = Vector2(-355.55557, 88.88889)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_m4x7e")
+nodes/TimeScale/position = Vector2(-155.55556, 88.88889)
+nodes/filtered_blend_time_seek/node = SubResource("AnimationNodeTimeSeek_tk7xo")
+nodes/filtered_blend_time_seek/position = Vector2(-1088.8889, 355.55557)
+nodes/full_blend_time_seek/node = SubResource("AnimationNodeTimeSeek_vh8xy")
+nodes/full_blend_time_seek/position = Vector2(-844.44446, 355.55557)
+nodes/filtered_blend_animation/node = SubResource("AnimationNodeAnimation_hgeoe")
+nodes/filtered_blend_animation/position = Vector2(-1088.8889, 533.3334)
+nodes/full_blend_animation/node = SubResource("AnimationNodeAnimation_4jyny")
+nodes/full_blend_animation/position = Vector2(-844.44446, 533.3334)
+nodes/filtered_one_shot_animation/node = SubResource("AnimationNodeAnimation_dhkrs")
+nodes/filtered_one_shot_animation/position = Vector2(-622.2222, 533.3334)
+nodes/full_one_shot_animation/node = SubResource("AnimationNodeAnimation_4ycey")
+nodes/full_one_shot_animation/position = Vector2(-355.55557, 533.3334)
+node_connections = [&"output", 0, &"TimeScale", &"filtered_blend", 0, &"idle_walk_run_blend", &"filtered_blend", 1, &"filtered_blend_time_seek", &"full_blend", 0, &"filtered_blend", &"full_blend", 1, &"full_blend_time_seek", &"filtered_one_shot", 0, &"full_blend", &"filtered_one_shot", 1, &"filtered_one_shot_animation", &"full_one_shot", 0, &"filtered_one_shot", &"full_one_shot", 1, &"full_one_shot_animation", &"TimeScale", 0, &"full_one_shot", &"filtered_blend_time_seek", 0, &"filtered_blend_animation", &"full_blend_time_seek", 0, &"full_blend_animation"]

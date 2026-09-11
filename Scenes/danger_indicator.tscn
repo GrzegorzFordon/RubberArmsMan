@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://0gfyjvjd0oes"]
+
+[ext_resource type="Script" uid="uid://bat0v3csw2fdp" path="res://Scripts/danger_indicator.gd" id="1_u2lqi"]
+[ext_resource type="Texture2D" uid="uid://b1co1770g8grt" path="res://Assets/Crosshairs/Outline/crosshair022.png" id="2_yc7f6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yc7f6"]
+outline_size = 5
+outline_color = Color(0.061136015, 0.061136, 0.061136, 1)
+
+[node name="DangerIndicator" type="Node3D" unique_id=2088944142 node_paths=PackedStringArray("panel", "texture_rect", "label")]
+script = ExtResource("1_u2lqi")
+panel = NodePath("Panel")
+texture_rect = NodePath("Panel/VBoxContainer/TextureRect")
+label = NodePath("Panel/VBoxContainer/Label")
+
+[node name="Panel" type="Control" parent="." unique_id=1526025964]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=760465243]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -47.5
+offset_right = 36.0
+offset_bottom = 47.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -40
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer" unique_id=1120906683]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("2_yc7f6")
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer" unique_id=489501542]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 10)
+offset_transform_rotation = -1.6057029
+text = "000"
+label_settings = SubResource("LabelSettings_yc7f6")
+horizontal_alignment = 1
+vertical_alignment = 1

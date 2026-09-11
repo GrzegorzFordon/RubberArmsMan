@@ -1,0 +1,38 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cs2fc6jnk8r3"]
+
+[ext_resource type="Shader" uid="uid://dp65sla0csgyc" path="res://Shaders/root.tres" id="1_yv2xo"]
+
+[sub_resource type="Gradient" id="Gradient_pyidc"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.18815774, 0.33289456, 0.43815774)
+colors = PackedColorArray(0.029655004, 0.0093, 0.03, 1, 0.1064, 0.13287336, 0.19, 1, 0.29010418, 0.46311295, 0.26152197, 1, 0.0672, 0.07599999, 0.12, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ysb6p"]
+gradient = SubResource("Gradient_pyidc")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2nhos"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yi5lw"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_2nhos")
+seamless = true
+normalize = false
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ig65b"]
+noise_type = 0
+frequency = 0.0028
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1c7yr"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_ig65b")
+seamless = true
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_yv2xo")
+shader_parameter/NoiseOffset_A = Vector3(0.001, -0.001, 0)
+shader_parameter/Noise_A = SubResource("NoiseTexture2D_yi5lw")
+shader_parameter/NoiseOffset_B = Vector3(-0.001, 0.001, 0)
+shader_parameter/Noise_B = SubResource("NoiseTexture2D_1c7yr")
+shader_parameter/Gradient = SubResource("GradientTexture1D_ysb6p")

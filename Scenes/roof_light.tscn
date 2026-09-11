@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://u3n0qrt0xr08"]
+
+[ext_resource type="Texture2D" uid="uid://imif6usss32x" path="res://Assets/texture_03.png" id="1_hxq24"]
+[ext_resource type="Script" uid="uid://bx2q5wkvtmc3o" path="res://Components/Movement/rotator.gd" id="2_ssfdq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_18fmr"]
+resource_local_to_scene = true
+disable_fog = true
+albedo_texture = ExtResource("1_hxq24")
+emission_enabled = true
+emission = Color(0.74, 0.1924, 0.1924, 1)
+emission_energy_multiplier = 3.97
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_yr2h8"]
+material = SubResource("StandardMaterial3D_18fmr")
+radius = 1.0
+height = 2.0
+radial_segments = 8
+rings = 4
+
+[node name="RoofLight2" type="Node3D" unique_id=424366461]
+transform = Transform3D(0.4875, 0, 0, 0, 0.5, 0, 0, 0, 0.4875, 0, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=896214323]
+light_color = Color(1, 0.32, 0.32, 1)
+light_volumetric_fog_energy = 0.604
+omni_attenuation = 0.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=720082329]
+mesh = SubResource("SphereMesh_yr2h8")
+
+[node name="Rotator" type="Node" parent="MeshInstance3D" unique_id=474713813]
+script = ExtResource("2_ssfdq")
+speed = 0.1

@@ -1,0 +1,35 @@
+[gd_resource type="Environment" format=3 uid="uid://c3mybspqe0j03"]
+
+[ext_resource type="Shader" uid="uid://buvweqysjgxx5" path="res://Shaders/sky_shader.gdshader" id="1_bbg6u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bbg6u"]
+shader = ExtResource("1_bbg6u")
+shader_parameter/exposure = 1.0
+shader_parameter/weight = 0.0
+
+[sub_resource type="Sky" id="Sky_pyidc"]
+sky_material = SubResource("ShaderMaterial_bbg6u")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_pyidc")
+ambient_light_source = 3
+reflected_light_source = 2
+tonemap_mode = 3
+glow_enabled = true
+glow_normalized = true
+glow_bloom = 0.06
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.24404523, 0.27340713, 0.3086171, 1)
+fog_sun_scatter = 0.1
+fog_density = 0.8
+fog_aerial_perspective = 1.0
+fog_sky_affect = 0.05
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.57969266, 0.25326923, 0.29370755, 1)
+volumetric_fog_emission = Color(0.12094449, 0.053554915, 0.129753, 1)
+volumetric_fog_length = 60.0
+volumetric_fog_detail_spread = 0.5
+volumetric_fog_ambient_inject = 1.0
+volumetric_fog_sky_affect = 0.9

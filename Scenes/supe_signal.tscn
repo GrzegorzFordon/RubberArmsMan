@@ -1,0 +1,446 @@
+[gd_scene format=3 uid="uid://s3n8keyx8u4u"]
+
+[ext_resource type="Script" uid="uid://cr503h8vy8drr" path="res://Scripts/supe_signal.gd" id="1_fq7ks"]
+[ext_resource type="Script" uid="uid://ckp66er7olhmv" path="res://addons/shaderV2/rgba/gradientMapping.gd" id="2_nuasc"]
+[ext_resource type="Texture2D" uid="uid://3knaoqh1hihf" path="res://Assets/dagger-rose.svg" id="4_dpfke"]
+[ext_resource type="Script" uid="uid://cxm0s5neby8yy" path="res://Components/Movement/panner.gd" id="4_nv5o7"]
+[ext_resource type="Shader" uid="uid://ygo51f1myspq" path="res://Shaders/supe_signal_shader.tres" id="4_rov73"]
+[ext_resource type="Texture2D" uid="uid://bpemsguj05ux3" path="res://Assets/Noise/Melt/Melt 3.png" id="5_rov73"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_qp0en"]
+parameter_name = "ColorParameter"
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_dpfke"]
+parameter_name = "ColorMap"
+
+[sub_resource type="VisualShaderNodeColorOp" id="VisualShaderNodeColorOp_nv5o7"]
+operator = 8
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_rov73"]
+source = 5
+
+[sub_resource type="VisualShaderNodeClamp" id="VisualShaderNodeClamp_xawwj"]
+default_input_values = [0, 0.0, 1, 0.05, 2, 0.95]
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_io67h"]
+default_input_values = [1, 1.0, 2, 0.0, 3, false]
+initialized = true
+script = ExtResource("2_nuasc")
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_87fgn"]
+parameter_name = "Texture2DParameter"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ijlsh"]
+input_name = "diffuse"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_4v3fk"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_eywcr"]
+input_name = "light"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_w4su6"]
+input_name = "normal"
+
+[sub_resource type="VisualShaderNodeDotProduct" id="VisualShaderNodeDotProduct_kmwm7"]
+
+[sub_resource type="VisualShaderNodeClamp" id="VisualShaderNodeClamp_gsk3w"]
+default_input_values = [0, 0.0, 1, -0.9, 2, 0.9]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_2vpem"]
+input_name = "attenuation"
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_j2ypd"]
+default_input_values = [0, 0.0, 1, 1.0]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_te5ix"]
+default_input_values = [0, 0.0, 1, 0.1]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_64k6o"]
+default_input_values = [0, 0.0, 1, 2.5]
+operator = 3
+
+[sub_resource type="VisualShader" id="VisualShader_ynah0"]
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_qp0en")
+nodes/fragment/2/position = Vector2(-155.55556, 155.55556)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture2DParameter_dpfke")
+nodes/fragment/3/position = Vector2(-400, 355.55557)
+nodes/fragment/4/node = SubResource("VisualShaderNodeColorOp_nv5o7")
+nodes/fragment/4/position = Vector2(177.77779, 244.44446)
+nodes/fragment/5/node = SubResource("VisualShaderNodeTexture_rov73")
+nodes/fragment/5/position = Vector2(-66.66667, 400)
+nodes/fragment/connections = PackedInt32Array(2, 0, 4, 0, 4, 0, 0, 0, 3, 0, 5, 2, 5, 0, 4, 1)
+nodes/light/0/position = Vector2(1533.3334, 155.55556)
+nodes/light/2/node = SubResource("VisualShaderNodeInput_eywcr")
+nodes/light/2/position = Vector2(-377.7778, 111.111115)
+nodes/light/3/node = SubResource("VisualShaderNodeInput_w4su6")
+nodes/light/3/position = Vector2(-377.7778, 200)
+nodes/light/4/node = SubResource("VisualShaderNodeDotProduct_kmwm7")
+nodes/light/4/position = Vector2(-111.111115, 133.33334)
+nodes/light/5/node = SubResource("VisualShaderNodeClamp_gsk3w")
+nodes/light/5/position = Vector2(66.66667, 133.33334)
+nodes/light/6/node = SubResource("VisualShaderNodeInput_2vpem")
+nodes/light/6/position = Vector2(177.77779, 311.1111)
+nodes/light/7/node = SubResource("VisualShaderNodeFloatOp_j2ypd")
+nodes/light/7/position = Vector2(244.44446, 133.33334)
+nodes/light/8/node = SubResource("VisualShaderNodeFloatOp_te5ix")
+nodes/light/8/position = Vector2(422.22223, 133.33334)
+nodes/light/9/node = SubResource("VisualShaderNodeFloatOp_64k6o")
+nodes/light/9/position = Vector2(600, 133.33334)
+nodes/light/10/node = SubResource("VisualShaderNodeClamp_xawwj")
+nodes/light/10/position = Vector2(777.7778, 133.33334)
+nodes/light/11/node = SubResource("VisualShaderNodeCustom_io67h")
+nodes/light/11/position = Vector2(1000, 111.111115)
+nodes/light/12/node = SubResource("VisualShaderNodeTexture2DParameter_87fgn")
+nodes/light/12/position = Vector2(644.44446, 288.8889)
+nodes/light/13/node = SubResource("VisualShaderNodeInput_ijlsh")
+nodes/light/13/position = Vector2(1022.2222, 333.33334)
+nodes/light/14/node = SubResource("VisualShaderNodeVectorOp_4v3fk")
+nodes/light/14/position = Vector2(1311.1112, 133.33334)
+nodes/light/connections = PackedInt32Array(3, 0, 4, 1, 4, 0, 5, 0, 5, 0, 7, 0, 7, 0, 8, 0, 8, 0, 9, 0, 9, 0, 10, 0, 10, 0, 11, 0, 12, 0, 11, 4, 2, 0, 4, 0, 6, 0, 8, 1, 11, 0, 14, 0, 13, 0, 14, 1, 14, 0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_2c4q6"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.27383167, 0.461111)
+colors = PackedColorArray(0, 0, 0, 1, 0.27, 0.27, 0.27, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yphe4"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_2c4q6")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_51np1"]
+render_priority = 0
+shader = SubResource("VisualShader_ynah0")
+shader_parameter/ColorParameter = Color(0.44, 0.5, 0.482, 1)
+shader_parameter/Texture2DParameter = SubResource("GradientTexture1D_yphe4")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wfum3"]
+material = SubResource("ShaderMaterial_51np1")
+height = 0.7
+radial_segments = 12
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wfum3"]
+shading_mode = 0
+albedo_color = Color(1.3176602, 1.353256, 0.8193202, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nnyum"]
+material = SubResource("StandardMaterial3D_wfum3")
+top_radius = 0.45
+bottom_radius = 0.45
+height = 0.15
+
+[sub_resource type="Gradient" id="Gradient_qp0en"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.22601616, 0.6, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.87711835, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nv5o7"]
+gradient = SubResource("Gradient_qp0en")
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dpfke"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+disable_fog = true
+albedo_color = Color(1.1530328, 1.128605, 0.42019776, 0.1254902)
+albedo_texture = SubResource("GradientTexture2D_nv5o7")
+texture_repeat = false
+disable_receive_shadows = true
+proximity_fade_enabled = true
+distance_fade_mode = 2
+distance_fade_min_distance = 500.0
+distance_fade_max_distance = 100.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2oqet"]
+material = SubResource("StandardMaterial3D_dpfke")
+top_radius = 30.0
+height = 150.0
+radial_segments = 12
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nv5o7"]
+transparency = 1
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("4_dpfke")
+disable_receive_shadows = true
+billboard_mode = 2
+distance_fade_mode = 2
+distance_fade_min_distance = 500.0
+distance_fade_max_distance = 300.0
+stencil_flags = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_wfum3"]
+material = SubResource("StandardMaterial3D_nv5o7")
+flip_faces = true
+size = Vector2(35, 35)
+orientation = 1
+
+[sub_resource type="Gradient" id="Gradient_dpfke"]
+offsets = PackedFloat32Array(0, 0.6325202)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b358n"]
+gradient = SubResource("Gradient_dpfke")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2oqet"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+albedo_color = Color(1.1530328, 1.128605, 0.42019776, 0.11764706)
+albedo_texture = SubResource("GradientTexture2D_b358n")
+billboard_mode = 2
+billboard_keep_scale = true
+distance_fade_mode = 2
+distance_fade_min_distance = 500.0
+distance_fade_max_distance = 200.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_5ex30"]
+material = SubResource("StandardMaterial3D_2oqet")
+flip_faces = true
+size = Vector2(5, 5)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qp0en"]
+transparency = 1
+disable_ambient_light = true
+disable_fog = true
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("4_dpfke")
+disable_receive_shadows = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_qp0en"]
+material = SubResource("StandardMaterial3D_qp0en")
+size = Vector2(0.6, 0.6)
+orientation = 1
+
+[sub_resource type="Curve" id="Curve_rov73"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0.1, -1), 0.0, 0.0, 0, 0, Vector2(0.3403656, 0.83817405), 2.2693903, 2.2693903, 0, 0, Vector2(0.6, 0.8), -2.0088048, -2.0088048, 0, 0, Vector2(0.8, -1), -0.78979224, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dpfke"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_6buf1"]
+parameter_name = "ColorParameter"
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_d0nva"]
+parameter_name = "ColorMap"
+
+[sub_resource type="VisualShaderNodeColorOp" id="VisualShaderNodeColorOp_ff5uv"]
+operator = 8
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_q7j6b"]
+source = 5
+
+[sub_resource type="VisualShaderNodeClamp" id="VisualShaderNodeClamp_cnake"]
+default_input_values = [0, 0.0, 1, 0.05, 2, 0.95]
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_yfduw"]
+default_input_values = [1, 1.0, 2, 0.0, 3, false]
+initialized = true
+script = ExtResource("2_nuasc")
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_3co3p"]
+parameter_name = "Texture2DParameter"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_pygo3"]
+input_name = "diffuse"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_shvla"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ht6ch"]
+input_name = "light"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ea7hq"]
+input_name = "normal"
+
+[sub_resource type="VisualShaderNodeDotProduct" id="VisualShaderNodeDotProduct_67t5g"]
+
+[sub_resource type="VisualShaderNodeClamp" id="VisualShaderNodeClamp_ktdmc"]
+default_input_values = [0, 0.0, 1, -0.9, 2, 0.9]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_18igs"]
+input_name = "attenuation"
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_01ljh"]
+default_input_values = [0, 0.0, 1, 1.0]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_rayod"]
+default_input_values = [0, 0.0, 1, 0.1]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_rg80t"]
+default_input_values = [0, 0.0, 1, 2.5]
+operator = 3
+
+[sub_resource type="VisualShader" id="VisualShader_e72vn"]
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_6buf1")
+nodes/fragment/2/position = Vector2(-155.55556, 155.55556)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture2DParameter_d0nva")
+nodes/fragment/3/position = Vector2(-400, 355.55557)
+nodes/fragment/4/node = SubResource("VisualShaderNodeColorOp_ff5uv")
+nodes/fragment/4/position = Vector2(177.77779, 244.44446)
+nodes/fragment/5/node = SubResource("VisualShaderNodeTexture_q7j6b")
+nodes/fragment/5/position = Vector2(-66.66667, 400)
+nodes/fragment/connections = PackedInt32Array(2, 0, 4, 0, 4, 0, 0, 0, 3, 0, 5, 2, 5, 0, 4, 1)
+nodes/light/0/position = Vector2(1533.3334, 155.55556)
+nodes/light/2/node = SubResource("VisualShaderNodeInput_ht6ch")
+nodes/light/2/position = Vector2(-377.7778, 111.111115)
+nodes/light/3/node = SubResource("VisualShaderNodeInput_ea7hq")
+nodes/light/3/position = Vector2(-377.7778, 200)
+nodes/light/4/node = SubResource("VisualShaderNodeDotProduct_67t5g")
+nodes/light/4/position = Vector2(-111.111115, 133.33334)
+nodes/light/5/node = SubResource("VisualShaderNodeClamp_ktdmc")
+nodes/light/5/position = Vector2(66.66667, 133.33334)
+nodes/light/6/node = SubResource("VisualShaderNodeInput_18igs")
+nodes/light/6/position = Vector2(177.77779, 311.1111)
+nodes/light/7/node = SubResource("VisualShaderNodeFloatOp_01ljh")
+nodes/light/7/position = Vector2(244.44446, 133.33334)
+nodes/light/8/node = SubResource("VisualShaderNodeFloatOp_rayod")
+nodes/light/8/position = Vector2(422.22223, 133.33334)
+nodes/light/9/node = SubResource("VisualShaderNodeFloatOp_rg80t")
+nodes/light/9/position = Vector2(600, 133.33334)
+nodes/light/10/node = SubResource("VisualShaderNodeClamp_cnake")
+nodes/light/10/position = Vector2(777.7778, 133.33334)
+nodes/light/11/node = SubResource("VisualShaderNodeCustom_yfduw")
+nodes/light/11/position = Vector2(1000, 111.111115)
+nodes/light/12/node = SubResource("VisualShaderNodeTexture2DParameter_3co3p")
+nodes/light/12/position = Vector2(644.44446, 288.8889)
+nodes/light/13/node = SubResource("VisualShaderNodeInput_pygo3")
+nodes/light/13/position = Vector2(1022.2222, 333.33334)
+nodes/light/14/node = SubResource("VisualShaderNodeVectorOp_shvla")
+nodes/light/14/position = Vector2(1311.1112, 133.33334)
+nodes/light/connections = PackedInt32Array(3, 0, 4, 1, 4, 0, 5, 0, 5, 0, 7, 0, 7, 0, 8, 0, 8, 0, 9, 0, 9, 0, 10, 0, 10, 0, 11, 0, 12, 0, 11, 4, 2, 0, 4, 0, 6, 0, 8, 1, 11, 0, 14, 0, 13, 0, 14, 1, 14, 0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_8bfen"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.16018507, 0.461111)
+colors = PackedColorArray(0, 0, 0, 1, 0.27, 0.27, 0.27, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hlhv2"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_8bfen")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1my8m"]
+render_priority = 0
+shader = SubResource("VisualShader_e72vn")
+shader_parameter/ColorParameter = Color(0.16862746, 0.19215687, 0.18431373, 1)
+shader_parameter/Texture2DParameter = SubResource("GradientTexture1D_hlhv2")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_v0pm2"]
+material = SubResource("ShaderMaterial_1my8m")
+top_radius = 0.1
+bottom_radius = 0.1
+height = 1.0
+radial_segments = 12
+cap_bottom = false
+
+[sub_resource type="Gradient" id="Gradient_nv5o7"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.6934958, 0.90487796)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.17254902, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fttun"]
+gradient = SubResource("Gradient_nv5o7")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xawwj"]
+render_priority = 0
+shader = ExtResource("4_rov73")
+shader_parameter/color = Color(0.89, 0.736475, 0.48950002, 0.75686276)
+shader_parameter/circle_tex = SubResource("GradientTexture2D_fttun")
+shader_parameter/logo_scale = 1.8
+shader_parameter/logo_tex = ExtResource("4_dpfke")
+shader_parameter/noise_offset = Vector2(0.1, 0.1)
+shader_parameter/noise_speed = 0.2
+shader_parameter/noise_tex = ExtResource("5_rov73")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wfum3"]
+material = SubResource("ShaderMaterial_xawwj")
+flip_faces = true
+size = Vector2(100, 100)
+
+[node name="SupeSignal" type="Node3D" unique_id=1770835244 node_paths=PackedStringArray("marker_3d", "shader_mesh")]
+script = ExtResource("1_fq7ks")
+marker_3d = NodePath("Visuals/MainCylinder/Cone/LogoBig/Marker3D")
+shader_mesh = NodePath("ShaderMesh")
+
+[node name="Visuals" type="Node3D" parent="." unique_id=538829012]
+
+[node name="MainCylinder" type="MeshInstance3D" parent="Visuals" unique_id=332733604]
+transform = Transform3D(0.8660253, 0.5, 0, -0.5, 0.8660253, 0, 0, 0, 1, 0, 0.3, 0)
+mesh = SubResource("CylinderMesh_wfum3")
+
+[node name="LightCylinder" type="MeshInstance3D" parent="Visuals/MainCylinder" unique_id=117894147]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3113417e-08, 0.3, 0)
+mesh = SubResource("CylinderMesh_nnyum")
+
+[node name="Cone" type="MeshInstance3D" parent="Visuals/MainCylinder" unique_id=1355995001]
+transform = Transform3D(1, 2.9802322e-08, 0, -2.9802322e-08, 1, 0, 0, 0, 1, 2.4735928e-06, 75.3, 0)
+transparency = 0.78
+mesh = SubResource("CylinderMesh_2oqet")
+
+[node name="LogoBig" type="MeshInstance3D" parent="Visuals/MainCylinder/Cone" unique_id=591148362]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3841858e-07, 74.28458, 0)
+visible = false
+transparency = 0.36
+cast_shadow = 0
+mesh = SubResource("QuadMesh_wfum3")
+
+[node name="LogoBigBG" type="MeshInstance3D" parent="Visuals/MainCylinder/Cone/LogoBig" unique_id=1302007071]
+transform = Transform3D(13.09, 0, 0, 0, 13.09, 0, 0, 0, 13.09, 0, 0, 0)
+visible = false
+mesh = SubResource("QuadMesh_5ex30")
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Visuals/MainCylinder/Cone/LogoBig" unique_id=1734700291]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 105, 0)
+remote_path = NodePath("../../../../../ShaderMesh")
+update_rotation = false
+update_scale = false
+
+[node name="Marker3D" type="Marker3D" parent="Visuals/MainCylinder/Cone/LogoBig" unique_id=975493744]
+
+[node name="LogoSmall" type="MeshInstance3D" parent="Visuals/MainCylinder/Cone" unique_id=1701347592]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0493906e-06, -74.92478, 0)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_qp0en")
+
+[node name="Panner" type="Node" parent="Visuals/MainCylinder" unique_id=1668077862 node_paths=PackedStringArray("target")]
+script = ExtResource("4_nv5o7")
+target = NodePath("..")
+axis_vector = Vector3(0, 0, 1)
+speed = 0.05
+min_angle = -10.0
+max_angle = 10.0
+curve = SubResource("Curve_rov73")
+noise_tex = SubResource("FastNoiseLite_dpfke")
+start_random = true
+metadata/_custom_type_script = "uid://cxm0s5neby8yy"
+
+[node name="LegRight" type="MeshInstance3D" parent="Visuals" unique_id=1930956120]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+mesh = SubResource("CylinderMesh_v0pm2")
+
+[node name="LegLeft" type="MeshInstance3D" parent="Visuals" unique_id=1365320963]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+mesh = SubResource("CylinderMesh_v0pm2")
+
+[node name="ShaderMesh" type="MeshInstance3D" parent="." unique_id=485322406]
+transform = Transform3D(1.67, 4.9769884e-08, 0, -4.9769884e-08, 1.67, 0, 0, 0, 1.67, 127.2923, 220.77669, 0)
+top_level = true
+transparency = 0.34
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_wfum3")

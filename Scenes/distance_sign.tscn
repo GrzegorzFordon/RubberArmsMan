@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cn3t2fyxnvwhh"]
+
+[ext_resource type="Script" uid="uid://bmmhsvfeyv23h" path="res://Scripts/distance_sign.gd" id="1_um1rj"]
+[ext_resource type="Texture2D" uid="uid://3knaoqh1hihf" path="res://Assets/dagger-rose.svg" id="2_ngxpv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wfum3"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+disable_fog = true
+albedo_color = Color(1.5860357, 0.63099194, 1.8247963, 0.5411765)
+proximity_fade_enabled = true
+proximity_fade_distance = 10.0
+
+[node name="DistanceSign" type="Node3D" unique_id=1187035914 node_paths=PackedStringArray("label_3d")]
+script = ExtResource("1_um1rj")
+label_3d = NodePath("Label3D")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=89914647]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.05, 0)
+pixel_size = 0.0002
+billboard = 1
+no_depth_test = true
+fixed_size = true
+texture = ExtResource("2_ngxpv")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=842845273]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
+pixel_size = 0.002
+billboard = 1
+no_depth_test = true
+fixed_size = true
+texture_filter = 0
+text = "100m"
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=735928585]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -31, 0)
+radius = 1.0
+height = 100.0
+material = SubResource("StandardMaterial3D_wfum3")

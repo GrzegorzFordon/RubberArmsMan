@@ -1,0 +1,226 @@
+[gd_scene format=3 uid="uid://ulk433f5f8g"]
+
+[ext_resource type="Script" uid="uid://brjyfeptfvtns" path="res://Scenes/building_base.gd" id="1_0w0sl"]
+[ext_resource type="Resource" uid="uid://borx2d0w05hk8" path="res://Resources/BuildingData/skyscraper_a_building_data.tres" id="2_sog1v"]
+[ext_resource type="Shader" uid="uid://b1d5gxy6x8ajt" path="res://Shaders/Godot-4-interior-mapping-shader-no-cubemap-main/Interior mapping.gdshader" id="3_teeiu"]
+[ext_resource type="ArrayMesh" uid="uid://mpwcyokuq8e4" path="res://Assets/_buildings/skyscraper_small_mesh.tres" id="4_dikx2"]
+[ext_resource type="ArrayMesh" uid="uid://dsjkpnrkmhnj5" path="res://Assets/_buildings/skyscraper_small_outline_mesh.tres" id="5_k75l0"]
+[ext_resource type="Texture2D" uid="uid://imif6usss32x" path="res://Assets/texture_03.png" id="5_mr0i3"]
+[ext_resource type="Script" uid="uid://bx2q5wkvtmc3o" path="res://Components/Movement/rotator.gd" id="6_sog1v"]
+[ext_resource type="Script" uid="uid://830kiw54kiq3" path="res://Components/grappling_target.gd" id="7_mr0i3"]
+[ext_resource type="PackedScene" uid="uid://u3n0qrt0xr08" path="res://Scenes/roof_light.tscn" id="9_dikx2"]
+[ext_resource type="PackedScene" uid="uid://s3n8keyx8u4u" path="res://Scenes/supe_signal.tscn" id="10_dikx2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wfum3"]
+size = Vector3(10, 28, 10)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jmm3p"]
+frequency = 0.0034
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nnjh5"]
+noise = SubResource("FastNoiseLite_jmm3p")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xt6d5"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(1, 1, 1, 0.23529412)
+metallic = 1.0
+metallic_specular = 0.0
+roughness = 0.33
+refraction_enabled = true
+refraction_scale = 0.19
+refraction_texture = SubResource("NoiseTexture2D_nnjh5")
+
+[sub_resource type="QuadMesh" id="QuadMesh_gl4ko"]
+lightmap_size_hint = Vector2i(17, 17)
+material = SubResource("StandardMaterial3D_xt6d5")
+size = Vector2(8.75, 33.9)
+subdivide_width = 3
+subdivide_depth = 3
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0w0sl"]
+load_path = "res://.godot/imported/interior_2d_Atlas emit.png-7b7a3c227d55888e84c617cf8cac0b72.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mr0i3"]
+load_path = "res://.godot/imported/interior_2d_Atlas.png-027cac0c6f23ce203611ea7c2ea5e691.s3tc.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vh3ub"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_teeiu")
+shader_parameter/roomTexture = SubResource("CompressedTexture2D_mr0i3")
+shader_parameter/roomEmit = SubResource("CompressedTexture2D_0w0sl")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/emission = Color(1, 1, 1, 1)
+shader_parameter/emissionEnergy = 2.0
+shader_parameter/roomTiles = Vector2i(4, 2)
+shader_parameter/depthRemap = Vector2(3, 3)
+shader_parameter/tiling = Vector2(1, 10.005)
+shader_parameter/seed = 0.09
+
+[sub_resource type="QuadMesh" id="QuadMesh_sog1v"]
+lightmap_size_hint = Vector2i(17, 17)
+material = SubResource("ShaderMaterial_vh3ub")
+size = Vector2(7.59, 35)
+subdivide_width = 3
+subdivide_depth = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_18fmr"]
+resource_local_to_scene = true
+disable_fog = true
+albedo_texture = ExtResource("5_mr0i3")
+emission_enabled = true
+emission = Color(0.74, 0.1924, 0.1924, 1)
+emission_energy_multiplier = 3.97
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_yr2h8"]
+material = SubResource("StandardMaterial3D_18fmr")
+radius = 1.0
+height = 2.0
+radial_segments = 8
+rings = 4
+
+[node name="BuildingBase" type="Node3D" unique_id=1199722021 node_paths=PackedStringArray("mesh_instance", "outline_mesh_instance", "collision_shape_3d", "lights", "windows")]
+script = ExtResource("1_0w0sl")
+roof_light = ExtResource("9_dikx2")
+building_data = ExtResource("2_sog1v")
+mesh_instance = NodePath("Mesh")
+outline_mesh_instance = NodePath("OutlineMesh")
+collision_shape_3d = NodePath("StaticBody3D/CollisionShape3D")
+lights = NodePath("Lights")
+windows = NodePath("Windows")
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=1635044839]
+mesh = ExtResource("4_dikx2")
+
+[node name="OutlineMesh" type="MeshInstance3D" parent="." unique_id=1533375760]
+mesh = ExtResource("5_k75l0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1253424617]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1027314311]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.461487, 0)
+shape = SubResource("BoxShape3D_wfum3")
+
+[node name="GrapplingTarget" type="Node" parent="StaticBody3D" unique_id=1443885554]
+script = ExtResource("7_mr0i3")
+metadata/_custom_type_script = "uid://830kiw54kiq3"
+
+[node name="Windows" type="Node3D" parent="." unique_id=1828312364]
+visible = false
+
+[node name="Window" type="Node3D" parent="Windows" unique_id=1877317022]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.157, 25.882, -5.982)
+
+[node name="Glass Mesh" type="MeshInstance3D" parent="Windows/Window" unique_id=559443183]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
+layers = 2
+cast_shadow = 0
+mesh = SubResource("QuadMesh_gl4ko")
+
+[node name="InterriorMappingMesh" type="MeshInstance3D" parent="Windows/Window" unique_id=373014175]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.19900002, -0.90213585, 0.09899998)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_sog1v")
+
+[node name="Window2" type="Node3D" parent="Windows" unique_id=1102156709]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.157, 25.882, 5.982)
+
+[node name="Glass Mesh" type="MeshInstance3D" parent="Windows/Window2" unique_id=1431802200]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_gl4ko")
+
+[node name="InterriorMappingMesh" type="MeshInstance3D" parent="Windows/Window2" unique_id=2041664428]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.19900002, -0.90213585, 0.09899998)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_sog1v")
+
+[node name="Window3" type="Node3D" parent="Windows" unique_id=686378924]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.982, 25.882, 0)
+
+[node name="Glass Mesh" type="MeshInstance3D" parent="Windows/Window3" unique_id=1919985937]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_gl4ko")
+
+[node name="InterriorMappingMesh" type="MeshInstance3D" parent="Windows/Window3" unique_id=2108410159]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.19900002, -0.90213585, 0.09899998)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_sog1v")
+
+[node name="Window4" type="Node3D" parent="Windows" unique_id=1985486759]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 5.982, 25.882, 0)
+
+[node name="Glass Mesh" type="MeshInstance3D" parent="Windows/Window4" unique_id=1189070269]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_gl4ko")
+
+[node name="InterriorMappingMesh" type="MeshInstance3D" parent="Windows/Window4" unique_id=341139851]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.19900002, -0.90213585, 0.09899998)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_sog1v")
+
+[node name="Lights" type="Node3D" parent="." unique_id=598447426]
+
+[node name="RoofLight" type="Node3D" parent="Lights" unique_id=1754505322]
+transform = Transform3D(0.4875, 0, 0, 0, 0.5, 0, 0, 0, 0.4875, 5.8500004, 44, 5.8500004)
+visible = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights/RoofLight" unique_id=489673863]
+light_color = Color(1, 0.32, 0.32, 1)
+light_volumetric_fog_energy = 0.604
+omni_attenuation = 0.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Lights/RoofLight" unique_id=1724964303]
+mesh = SubResource("SphereMesh_yr2h8")
+
+[node name="Rotator" type="Node" parent="Lights/RoofLight/MeshInstance3D" unique_id=690801915]
+script = ExtResource("6_sog1v")
+speed = 0.1
+
+[node name="RoofLight2" parent="Lights" unique_id=424366461 instance=ExtResource("9_dikx2")]
+transform = Transform3D(0.4875, 0, 0, 0, 0.5, 0, 0, 0, 0.4875, -5.8500004, 44, -5.8500004)
+visible = false
+
+[node name="RoofLight3" type="Node3D" parent="Lights" unique_id=530259288]
+transform = Transform3D(0.4875, 0, 0, 0, 0.5, 0, 0, 0, 0.4875, -5.8500004, 44, 5.8500004)
+visible = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights/RoofLight3" unique_id=1908653615]
+light_color = Color(1, 0.32, 0.32, 1)
+light_volumetric_fog_energy = 0.604
+omni_attenuation = 0.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Lights/RoofLight3" unique_id=1680035677]
+mesh = SubResource("SphereMesh_yr2h8")
+
+[node name="Rotator" type="Node" parent="Lights/RoofLight3/MeshInstance3D" unique_id=1319102877]
+script = ExtResource("6_sog1v")
+speed = 0.1
+
+[node name="RoofLight4" type="Node3D" parent="Lights" unique_id=476461595]
+transform = Transform3D(0.4875, 0, 0, 0, 0.5, 0, 0, 0, 0.4875, 5.8500004, 44, -5.8500004)
+visible = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights/RoofLight4" unique_id=1924835823]
+light_color = Color(1, 0.32, 0.32, 1)
+light_volumetric_fog_energy = 0.604
+omni_attenuation = 0.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Lights/RoofLight4" unique_id=1882126273]
+mesh = SubResource("SphereMesh_yr2h8")
+
+[node name="Rotator" type="Node" parent="Lights/RoofLight4/MeshInstance3D" unique_id=1356137543]
+script = ExtResource("6_sog1v")
+speed = 0.1
+
+[node name="Items" type="Node3D" parent="." unique_id=65182428]
+
+[node name="SupeSignal" parent="Items" unique_id=1770835244 instance=ExtResource("10_dikx2")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 44.4, 0)
+visible = false

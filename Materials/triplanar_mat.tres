@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cefswf1w37sk5"]
+
+[ext_resource type="Texture2D" uid="uid://imif6usss32x" path="res://Assets/texture_03.png" id="1_ykjfi"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vdqvo"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8p807"]
+noise = SubResource("FastNoiseLite_vdqvo")
+seamless = true
+
+[resource]
+resource_local_to_scene = true
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_ykjfi")
+emission_texture = SubResource("NoiseTexture2D_8p807")
+rim = 0.0
+clearcoat = 0.56
+uv1_triplanar = true
+uv1_world_triplanar = true

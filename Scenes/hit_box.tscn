@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://d03id7nfbo8qq"]
+
+[ext_resource type="Script" uid="uid://bs5w6qlsa0hk1" path="res://Components/hit_box.gd" id="1_mywce"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5ex30"]
+
+[node name="HitBox" type="Area3D" unique_id=1519821754]
+script = ExtResource("1_mywce")
+metadata/_custom_type_script = "uid://bs5w6qlsa0hk1"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1998463990]
+shape = SubResource("SphereShape3D_5ex30")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

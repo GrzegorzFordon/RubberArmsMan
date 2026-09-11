@@ -1,0 +1,24 @@
+[gd_resource type="VisualShader" format=3 uid="uid://dn0mcya1s4k3f"]
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_nejd1"]
+parameter_name = "ViewportTexture"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_pqt2b"]
+source = 5
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_nejd1"]
+input_name = "uv"
+
+[resource]
+resource_local_to_scene = true
+modes/cull = 2
+flags/unshaded = true
+nodes/vertex/2/node = SubResource("VisualShaderNodeInput_nejd1")
+nodes/vertex/2/position = Vector2(37.037014, 284.29633)
+nodes/vertex/connections = PackedInt32Array(2, 0, 0, 4)
+nodes/fragment/0/position = Vector2(422.22223, 111.111115)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture2DParameter_nejd1")
+nodes/fragment/2/position = Vector2(-200, 111.111115)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_pqt2b")
+nodes/fragment/3/position = Vector2(155.55556, 133.33334)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 3, 0, 0, 0)

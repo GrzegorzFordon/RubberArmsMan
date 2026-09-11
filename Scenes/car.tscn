@@ -1,0 +1,196 @@
+[gd_scene format=3 uid="uid://13nr8dkk2toc"]
+
+[ext_resource type="Script" uid="uid://ct7ljnrm6yw4p" path="res://Scripts/car.gd" id="1_1sfmx"]
+[ext_resource type="Script" uid="uid://uwkx2tk6pt6u" path="res://addons/road-generator/nodes/road_lane_agent.gd" id="1_go66d"]
+[ext_resource type="AudioStream" uid="uid://duywmau4tyrxo" path="res://Assets/Audio/CarHorns/dragon-studio-car-honk-386166.mp3" id="5_aqss3"]
+[ext_resource type="Script" uid="uid://830kiw54kiq3" path="res://Components/grappling_target.gd" id="5_u41r7"]
+[ext_resource type="PackedScene" uid="uid://dxyjywvshstq8" path="res://Assets/Kenney Prototyping/vehicle-convertible.glb" id="6_aky6y"]
+[ext_resource type="AudioStream" uid="uid://d1t1e3bwk3mdu" path="res://Assets/Audio/CarHorns/freesound_community-car-horn-6408.mp3" id="6_y3wrf"]
+[ext_resource type="AudioStream" uid="uid://b718mq0u2htpm" path="res://Assets/Audio/CarHorns/universfield-car-horn-02-153260.mp3" id="7_argdw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wfum3"]
+size = Vector3(1, 1, 4)
+
+[sub_resource type="Curve" id="Curve_yi23e"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_g8hvj"]
+curve = SubResource("Curve_yi23e")
+
+[sub_resource type="Gradient" id="Gradient_u41r7"]
+offsets = PackedFloat32Array(0.012720762, 0.26866943, 0.51448756, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.19570805, 0.19570805, 0.19570805, 1, 1, 1, 1, 1, 0.032422807, 0.032422807, 0.032422807, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d0nnr"]
+gradient = SubResource("Gradient_u41r7")
+
+[sub_resource type="Curve" id="Curve_aky6y"]
+_limits = [0.0, 35.572166, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 35.572166), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_d0nnr"]
+curve = SubResource("Curve_aky6y")
+
+[sub_resource type="Curve" id="Curve_aqss3"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xdjs4"]
+curve = SubResource("Curve_aqss3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y3wrf"]
+direction = Vector3(0, 0, 2)
+spread = 5.0
+initial_velocity_min = 1.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, -1, 0)
+damping_min = 1.0
+damping_max = 2.0
+damping_curve = SubResource("CurveTexture_d0nnr")
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_xdjs4")
+color_ramp = SubResource("GradientTexture1D_d0nnr")
+alpha_curve = SubResource("CurveTexture_g8hvj")
+turbulence_noise_speed_random = 0.0
+collision_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d0nnr"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_argdw"]
+material = SubResource("StandardMaterial3D_d0nnr")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ex30"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+disable_fog = true
+albedo_color = Color(0.6907881, 0.5789698, 0, 0.32941177)
+proximity_fade_enabled = true
+proximity_fade_distance = 3.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wfum3"]
+material = SubResource("StandardMaterial3D_5ex30")
+top_radius = 0.738
+bottom_radius = 0.215
+height = 6.0
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wfum3"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(1, 0.29000002, 0.29000002, 1)
+emission_enabled = true
+emission = Color(0.27, 0.0729, 0.0729, 1)
+rim_enabled = true
+rim = 0.51
+rim_tint = 0.85
+refraction_enabled = true
+disable_receive_shadows = true
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wfum3"]
+random_pitch = 1.0594631
+random_volume_offset_db = 1.0
+streams_count = 3
+stream_0/stream = ExtResource("5_aqss3")
+stream_1/stream = ExtResource("6_y3wrf")
+stream_1/weight = 0.0
+stream_2/stream = ExtResource("7_argdw")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aqss3"]
+size = Vector3(2.5, 10, 11)
+
+[node name="Car" type="CharacterBody3D" unique_id=2127381196 node_paths=PackedStringArray("road_lane_agent", "audio_stream_player_3d", "area_3d")]
+script = ExtResource("1_1sfmx")
+road_lane_agent = NodePath("RoadLaneAgent")
+color_arr = Array[Color]([Color(0.90279204, 0.67199206, 0.79894483, 1), Color(0.49119657, 0.68714094, 0.5418658, 1), Color(0.90979403, 0.645021, 0.41379148, 1)])
+speed = 25.0
+audio_stream_player_3d = NodePath("Area3D/AudioStreamPlayer3D")
+area_3d = NodePath("Area3D")
+
+[node name="RoadLaneAgent" type="Node" parent="." unique_id=1711712298]
+script = ExtResource("1_go66d")
+metadata/_custom_type_script = "uid://uwkx2tk6pt6u"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1748577586]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+shape = SubResource("BoxShape3D_wfum3")
+
+[node name="GrapplingTarget" type="Node" parent="." unique_id=1078085344]
+script = ExtResource("5_u41r7")
+metadata/_custom_type_script = "uid://830kiw54kiq3"
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="." unique_id=1985754470]
+enable_node_path = NodePath(".")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="VisibleOnScreenEnabler3D" unique_id=709331110]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0.373803, 3.9579644)
+amount = 128
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_y3wrf")
+draw_pass_1 = SubResource("QuadMesh_argdw")
+
+[node name="vehicle-convertible2" parent="VisibleOnScreenEnabler3D" unique_id=1829793674 instance=ExtResource("6_aky6y")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 2.0709777)
+
+[node name="HeadLights" type="Node3D" parent="VisibleOnScreenEnabler3D" unique_id=567813135]
+transform = Transform3D(1, 0, 0, 0, 0.9659257, 0.25881898, 0, -0.25881898, 0.9659257, 0, 0.90000004, 0.1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VisibleOnScreenEnabler3D/HeadLights" unique_id=1806629103]
+transform = Transform3D(1, 0, 0, 0, -2.9802322e-08, 1, 0, -1, -2.9802322e-08, -0.8, 0, -3.0000002)
+mesh = SubResource("CylinderMesh_wfum3")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="VisibleOnScreenEnabler3D/HeadLights" unique_id=1302851908]
+transform = Transform3D(1, 0, 0, 0, -2.9802322e-08, 1, 0, -1, -2.9802322e-08, 0.8, 0, -3.0000002)
+mesh = SubResource("CylinderMesh_wfum3")
+
+[node name="StopLights" type="Node3D" parent="VisibleOnScreenEnabler3D" unique_id=2037191345]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 4.2000003)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="VisibleOnScreenEnabler3D/StopLights" unique_id=1069226065]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0, -0.04651308)
+size = Vector3(0.4, 0.2, 0.2)
+material = SubResource("StandardMaterial3D_wfum3")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="VisibleOnScreenEnabler3D/StopLights/CSGBox3D" unique_id=1335334730]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.18041992)
+light_color = Color(1, 0.13999999, 0.13999999, 1)
+light_energy = 3.0
+light_volumetric_fog_energy = 4.05
+light_size = 1.785
+omni_range = 0.5
+omni_attenuation = -0.2
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="VisibleOnScreenEnabler3D/StopLights" unique_id=596242577]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0, -0.04651308)
+size = Vector3(0.4, 0.2, 0.2)
+material = SubResource("StandardMaterial3D_wfum3")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="VisibleOnScreenEnabler3D/StopLights/CSGBox3D2" unique_id=1478996996]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.18041992)
+light_color = Color(1, 0.13999999, 0.13999999, 1)
+light_energy = 3.0
+light_volumetric_fog_energy = 4.05
+light_size = 1.785
+omni_range = 0.5
+omni_attenuation = -0.2
+
+[node name="Area3D" type="Area3D" parent="." unique_id=394449234]
+collision_mask = 64
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Area3D" unique_id=2026093173]
+stream = SubResource("AudioStreamRandomizer_wfum3")
+bus = &"SFX"
+doppler_tracking = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1886285999]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -5)
+shape = SubResource("BoxShape3D_aqss3")

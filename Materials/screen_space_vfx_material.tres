@@ -1,0 +1,27 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bvgc54xar03nm"]
+
+[ext_resource type="Shader" uid="uid://6c6usxyhl0hk" path="res://Shaders/ScreenEffects/test_screen_effect_shader.tres" id="1_vanc7"]
+[ext_resource type="Texture2D" uid="uid://btiv6tvq1eqaf" path="res://Assets/Noise/Cracks/Cracks 8.png" id="2_vanc7"]
+
+[sub_resource type="Gradient" id="Gradient_jc7ei"]
+offsets = PackedFloat32Array(0.8882352, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jc7ei"]
+gradient = SubResource("Gradient_jc7ei")
+
+[sub_resource type="Gradient" id="Gradient_xuaoq"]
+offsets = PackedFloat32Array(0.81838226, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5ex30"]
+gradient = SubResource("Gradient_xuaoq")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_vanc7")
+shader_parameter/base_tex_a = ExtResource("2_vanc7")
+shader_parameter/gradient_tex = SubResource("GradientTexture1D_jc7ei")
+shader_parameter/mask_tex = SubResource("GradientTexture2D_5ex30")
+shader_parameter/TransparencyMult = 0.0

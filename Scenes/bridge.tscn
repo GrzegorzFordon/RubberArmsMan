@@ -1,0 +1,158 @@
+[gd_scene format=4 uid="uid://beqs016ks5pqc"]
+
+[ext_resource type="Shader" uid="uid://clw6hed2xfxyw" path="res://Shaders/simple_flat_shader.tres" id="1_h1rw7"]
+[ext_resource type="Texture2D" uid="uid://bpw40p3fmn0m0" path="res://Assets/Kenney City/Roads/Textures/colormap.png" id="2_jy1u5"]
+
+[sub_resource type="Gradient" id="Gradient_qcij8"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.24518818, 0.6594141)
+colors = PackedColorArray(0, 0, 0, 1, 0.27, 0.27, 0.27, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_teq3f"]
+gradient = SubResource("Gradient_qcij8")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_642p6"]
+render_priority = 0
+shader = ExtResource("1_h1rw7")
+shader_parameter/ColorParameter = Color(0.22951785, 0.2295179, 0.22951782, 1)
+shader_parameter/ColorMap = ExtResource("2_jy1u5")
+shader_parameter/Texture2DParameter = SubResource("GradientTexture1D_teq3f")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ggmos"]
+_surfaces = [{
+"aabb": AABB(-2.5, 0, -5, 5, 0.19999999, 10),
+"format": 34896613377,
+"index_count": 132,
+"index_data": PackedByteArray("AAABAAIAAgADAAAABAABAAAAAAADAAUAAwACAAUABQAGAAAAAAAGAAQABAAGAAUABQAHAAQABwAFAAIABAAHAAgAAgAIAAcABAAJAAEACAAJAAQAAgABAAoACQAKAAEACgALAAIAAgALAAgACwAKAAwACQAMAAoADAANAAsACwANAAgADQAMAA4ACQAOAAwADgAPAA0ADQAPAAgACQAQAA4AEQAPAA4ADgAQABEADwARAAgACQASABAAEQAQABIAEgATABEAEQATAAgACQAUABIAFAAJAAgAFAAVABIAFgATABIAEgAVABYAEwAWAAgAFgAVABQACAAXABQAFAAXABYAFgAXAAgA"),
+"name": "colormap",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("/////5kZAAD///9/mRkAAAAA/3+ZGQAAAAD//5kZAAD//wAAAAAAAAAA//8AAAAA/////wAAAAAAAAAAAAAAAAAAAAD//wAA//8AAP//AAD///9/MzMAAAAA/38zMwAA////f3B9AAAAAP9/cH0AAP///3+OggAAAAD/f46CAAD///9/zMwAAAAA/3/MzAAA////f2XmAAAAAP9/ZeYAAP///////wAA/////2XmAAAAAP//ZeYAAAAA/////wAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_k8rbf"]
+resource_name = "road-straight-half_road-straight-half"
+_surfaces = [{
+"aabb": AABB(-2.5, 0, -5, 5, 0.19999999, 10),
+"attribute_data": PackedByteArray("//dlxv/3/9//9//f//dlxv/3Zcb/95j5//eY+f/3Zcb/92XG//f/3//3/9//92XG//eY+f/3mPn/95j5//eY+f/3Zcb/92XG//dlxv/3Zcb/92XG//eY+f/3mPn/92XG//dlxv/3Zcb/92XG//dlxv83Zcb/N2XG/zf/3/83mPn/N//f/zf/3/83/9//N//f/zf/3/83mPn/N2XG/zdlxv83Zcb/N2XG/zeY+f83/9//N//f/zf/3/83/9//N//f/zf/3/83mPn/N2XG/zdlxv8n/9//J//f/yf/3/8n/9//J//f/yf/3/8n/9//J//f/wf/3/8H/9//B//f/wf/3/8H/9//B//f/wf/3/8H/9//R//f/0f/3/9H/9//R//f"),
+"format": 34896613399,
+"index_count": 132,
+"index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAANAA4ADgAPAAwAEAARABIAEgATABAAFAAVABYAFgAXABQAGAAZABoAGgAbABgAHAAdAB4AHwAcAB4AHwAeACAAHwAgACEAHwAhACIAHwAiACMAHwAjACQAJQAfACQAJQAkACYAJgAnACUAKAApACoAKwAoACoALAArACoALQAsACoALgAtACoALwAuACoAMAAvACoAMAAqADEAMQAyADAAMwAwADIANAA1ADYANgA3ADQAOAA5ADoAOgA7ADgAPAA9AD4APgA/ADwAQABBAEIAQgBDAEAARABFAEYARgBHAEQA"),
+"material": SubResource("ShaderMaterial_642p6"),
+"name": "colormap",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 72,
+"vertex_data": PackedByteArray("/////5kZAID///9/mRkAgAAA/3+ZGQCAAAD//5kZAIAAAP//AAD//wAAAAAAAP////8AAAAA////////AAD//wAA//9l5v//AAD/f2Xm//////9/Zeb///////9l5v//AAAAAP///7///wAA////v///AAAAAP+/AAAAAAAA/78AAP//AAD///////8AAP///////5kZ//8AAP//mRn//////////wCA//8AAP//AIAAAAAA//8AgAAA/////wCAAAD//2Xm////////Zeb/////////////AAD/////////////////v/////9l5v+/////f2Xm/7///wAA////v////3/MzP+/////f46C/7////9/cH3/v////38zM/+/////f5kZ/7///wAAAAD/v/////+ZGf+//////wAA/78AAP//Zeb/vwAA//////+/AAAAAP///78AAP9/Zeb/vwAA/3/MzP+/AAD/f46C/78AAP9/cH3/vwAA/38zM/+/AAD/f5kZ/78AAAAAAAD/vwAA//8AAP+/AAD//5kZ/7////9/joL//////3/MzP//AAD/f8zM//8AAP9/joL//wAA/38zM///////fzMz//////9/cH3//wAA/39wff//AAD/f5kZ//////9/mRn//////38zM///AAD/fzMz//8AAP9/zMz//////3/MzP//////f2Xm//8AAP9/Zeb//wAA/39wff//////f3B9//////9/joL//wAA/3+Ogv///3////9/////f////3////9/////f////3////9/////f////3////9/////f///AAD/fwAA/38AAP9/AAD/f/9//7//f/+//3//v/9//7//f////3////9/////f////3//v/9//7//f/+//3//v/9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/////f////3////9/////f////3////9/////f////3////9/////f////3////9//7//f/+//3//v/9//7//f/+//3//v/9//7//f/+//3//v/9//7//f/+//3//v/9//7//f/+//3//v/9//7//f/+//3//v/9//7//f/+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_ggmos")
+
+[sub_resource type="Curve3D" id="Curve3D_hv1ua"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -65, 0, 0, 0, 0, 0, 0, 0, 0, 65, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wfum3"]
+disable_fog = true
+emission_enabled = true
+emission = Color(0.65, 0.38306665, 0.078, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b358n"]
+albedo_color = Color(0.20148283, 0.20148283, 0.20148283, 1)
+
+[node name="Bridge" type="Node3D" unique_id=1159932711]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+
+[node name="RoadPathMesh2" type="PathMesh3D" parent="." unique_id=974216259 node_paths=PackedStringArray("path_3d")]
+path_3d = NodePath("Path3D")
+collision_mode = 1
+collision_layer = 1
+collision_mask = 1
+mesh = SubResource("ArrayMesh_k8rbf")
+surface_0/offset = Vector2(0, 0)
+surface_0/rotation = Vector3(0, 1.5707964, 0)
+surface_0/rotation_order = 2
+surface_0/distribution = 0
+surface_0/alignment = 0
+surface_0/mesh_length_override = 0.0
+surface_0/warp_along_curve = true
+surface_0/sample_cubic = false
+surface_0/tilt = true
+surface_0/triangle_count = 624
+
+[node name="Path3D" type="Path3D" parent="RoadPathMesh2" unique_id=604801577]
+curve = SubResource("Curve3D_hv1ua")
+
+[node name="BridgeNodes" type="Node3D" parent="." unique_id=1592092495]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, 0)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="BridgeNodes" unique_id=1351807960]
+transform = Transform3D(0.9999998, 0, 0, 0, -4.371139e-08, -1, 0, 0.9999998, -4.3711378e-08, -63, 0, 0)
+use_collision = true
+radius = 2.0
+height = 10.0
+material = SubResource("StandardMaterial3D_wfum3")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="BridgeNodes" unique_id=935629784]
+transform = Transform3D(0.9999997, 0, 0, 0, -4.371139e-08, -1, 0, 0.9999997, -4.371137e-08, -35, 5, 0)
+use_collision = true
+radius = 2.0
+height = 10.0
+material = SubResource("StandardMaterial3D_wfum3")
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="BridgeNodes" unique_id=400124694]
+transform = Transform3D(0.9999999, 0, 0, 0, -4.371139e-08, -1, 0, 0.9999999, -4.371138e-08, 0, 11, 0)
+use_collision = true
+radius = 2.0
+height = 10.0
+material = SubResource("StandardMaterial3D_wfum3")
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="BridgeNodes" unique_id=728802305]
+transform = Transform3D(0.9999997, 0, 0, 0, -4.371139e-08, -1, 0, 0.9999997, -4.371137e-08, 35, 5, 0)
+use_collision = true
+radius = 2.0
+height = 10.0
+material = SubResource("StandardMaterial3D_wfum3")
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="BridgeNodes" unique_id=1872491029]
+transform = Transform3D(0.99999976, 0, 0, 0, -4.371139e-08, -1, 0, 0.99999976, -4.3711374e-08, 64, 0, 0)
+use_collision = true
+radius = 2.0
+height = 10.0
+material = SubResource("StandardMaterial3D_wfum3")
+
+[node name="Legs" type="Node3D" parent="." unique_id=1847695760]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 21, 0)
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Legs" unique_id=762892983]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.000004, -58, 0)
+radius = 5.788
+height = 72.843
+material = SubResource("StandardMaterial3D_b358n")
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Legs" unique_id=2066006836]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 35.000004, -58, 0)
+radius = 5.788
+height = 72.843
+material = SubResource("StandardMaterial3D_b358n")
+
+[node name="Lines" type="Node3D" parent="." unique_id=2033905156]
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="Lines" unique_id=1052318524]
+transform = Transform3D(-4.3711378e-08, 0.9999998, 0, -1, -4.371139e-08, 0, 0, 0, 0.9999998, 0, 0, 5)
+use_collision = true
+radius = 0.2
+height = 130.0
+material = SubResource("StandardMaterial3D_wfum3")
+
+[node name="CSGCylinder3D9" type="CSGCylinder3D" parent="Lines" unique_id=326555231]
+transform = Transform3D(-4.371138e-08, 0.9999999, 0, -1, -4.371139e-08, 0, 0, 0, 0.9999999, 0, 0, -5)
+use_collision = true
+radius = 0.2
+height = 130.0
+material = SubResource("StandardMaterial3D_wfum3")

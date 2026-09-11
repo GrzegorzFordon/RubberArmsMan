@@ -1,0 +1,88 @@
+[gd_resource type="VisualShader" format=3 uid="uid://c180cy0q8y4mm"]
+
+[ext_resource type="Script" uid="uid://b1lrix1muik13" path="res://addons/shaderV2/uv/animated/tilingNoffsetAnimated.gd" id="1_k1rg5"]
+[ext_resource type="Script" uid="uid://cfkxgybel37j6" path="res://addons/shaderV2/tools/remap.gd" id="1_vat4i"]
+
+[sub_resource type="VisualShaderNodeVec2Parameter" id="VisualShaderNodeVec2Parameter_vat4i"]
+parameter_name = "offset"
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_k1rg5"]
+parameter_name = "time_seek"
+hint = 1
+
+[sub_resource type="Gradient" id="Gradient_k1rg5"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.7)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vat4i"]
+gradient = SubResource("Gradient_k1rg5")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_vat4i"]
+texture = SubResource("GradientTexture2D_vat4i")
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_4co6u"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_vat4i"]
+operator = 2
+
+[sub_resource type="Gradient" id="Gradient_4co6u"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4co6u"]
+gradient = SubResource("Gradient_4co6u")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_7uhnu"]
+texture = SubResource("GradientTexture1D_4co6u")
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_4co6u"]
+default_input_values = [1, 0.0, 2, 1.0, 3, 0.1, 4, 0.99]
+initialized = true
+script = ExtResource("1_vat4i")
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_4co6u"]
+parameter_name = "gradient_texture"
+texture_repeat = 2
+
+[sub_resource type="VisualShaderNodeUVPolarCoord" id="VisualShaderNodeUVPolarCoord_7uhnu"]
+default_input_values = [1, Vector2(0.5, 0.5), 2, 1.0, 3, 0.0]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_6kwo2"]
+source = 5
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_pe8k7"]
+default_input_values = [1, Vector3(0, 0, 0), 2, 0.0]
+initialized = true
+script = ExtResource("1_k1rg5")
+
+[resource]
+preview_params/time_seek = "0.0"
+nodes/fragment/0/position = Vector2(444.44446, 244.44446)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture2DParameter_4co6u")
+nodes/fragment/3/position = Vector2(-733.3334, 511.1111)
+nodes/fragment/4/node = SubResource("VisualShaderNodeUVPolarCoord_7uhnu")
+nodes/fragment/4/position = Vector2(-1422.2223, 266.6667)
+nodes/fragment/5/node = SubResource("VisualShaderNodeTexture_6kwo2")
+nodes/fragment/5/position = Vector2(-333.33334, 200)
+nodes/fragment/6/node = SubResource("VisualShaderNodeCustom_pe8k7")
+nodes/fragment/6/position = Vector2(-1022.2222, 333.33334)
+nodes/fragment/10/node = SubResource("VisualShaderNodeVec2Parameter_vat4i")
+nodes/fragment/10/position = Vector2(-1511.1112, 488.88892)
+nodes/fragment/11/node = SubResource("VisualShaderNodeFloatParameter_k1rg5")
+nodes/fragment/11/position = Vector2(-1488.8889, 822.2222)
+nodes/fragment/12/node = SubResource("VisualShaderNodeTexture_vat4i")
+nodes/fragment/12/position = Vector2(-288.8889, 600)
+nodes/fragment/13/node = SubResource("VisualShaderNodeVectorOp_4co6u")
+nodes/fragment/13/position = Vector2(-22.222223, 511.1111)
+nodes/fragment/15/node = SubResource("VisualShaderNodeVectorOp_vat4i")
+nodes/fragment/15/position = Vector2(177.77779, 555.55554)
+nodes/fragment/16/node = SubResource("VisualShaderNodeTexture_7uhnu")
+nodes/fragment/16/position = Vector2(-622.2222, 911.11115)
+nodes/fragment/17/node = SubResource("VisualShaderNodeCustom_4co6u")
+nodes/fragment/17/position = Vector2(-1111.1111, 733.3334)
+nodes/fragment/connections = PackedInt32Array(3, 0, 5, 2, 5, 0, 0, 0, 5, 0, 13, 0, 12, 0, 13, 1, 13, 0, 15, 0, 15, 0, 0, 1, 16, 0, 15, 1)

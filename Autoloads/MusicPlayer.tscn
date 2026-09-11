@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://btsykhlqt1sbv"]
+
+[ext_resource type="Script" uid="uid://drxjffm6y53rw" path="res://Autoloads/music_player.gd" id="1_aatr8"]
+[ext_resource type="AudioStream" uid="uid://cigifdvspn0ak" path="res://Assets/Audio/BackgroundMusic/joelfazhari-smoking-noir-true-crime-and-thriller-music-loopable-304055.mp3" id="2_g86wf"]
+[ext_resource type="AudioStream" uid="uid://cqdvfxnadc7ml" path="res://Assets/Audio/BackgroundMusic/arpmedia-dark-action-561452.mp3" id="3_frqn0"]
+[ext_resource type="AudioStream" uid="uid://cqyt8h7si2b58" path="res://Assets/Audio/BackgroundMusic/leberch-dark-cinematic-509801.mp3" id="4_c0k5i"]
+[ext_resource type="AudioStream" uid="uid://lald7u4ohvu1" path="res://Assets/Audio/BackgroundMusic/leberch-dark-horror-509729.mp3" id="5_kafnl"]
+[ext_resource type="AudioStream" uid="uid://cs3qyn53m8ysm" path="res://Assets/Audio/BackgroundMusic/solarflex-dark-background-569589.mp3" id="6_3sgdc"]
+
+[node name="MusicPlayer" type="Node" unique_id=1311796086 node_paths=PackedStringArray("audio_stream_player")]
+script = ExtResource("1_aatr8")
+audio_stream_player = NodePath("AudioStreamPlayer")
+song_arr = Array[AudioStreamMP3]([ExtResource("2_g86wf"), ExtResource("3_frqn0"), ExtResource("4_c0k5i"), ExtResource("5_kafnl"), ExtResource("6_3sgdc")])
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=60501832]

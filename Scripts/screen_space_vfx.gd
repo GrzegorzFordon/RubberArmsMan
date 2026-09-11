@@ -1,0 +1,2 @@
+class_name ScreenSpaceVFX
+extends MeshInstance3D

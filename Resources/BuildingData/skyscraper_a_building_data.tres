@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="BuildingData" format=3 uid="uid://borx2d0w05hk8"]
+
+[ext_resource type="ArrayMesh" uid="uid://ttolltv4ycmj" path="res://Assets/_buildings/skyscraper_a_mesh.tres" id="1_3l6dq"]
+[ext_resource type="Script" uid="uid://cy6sfd7tssky5" path="res://Resources/BuildingData/building_data.gd" id="1_7rdhp"]
+[ext_resource type="ArrayMesh" uid="uid://v1kb725nexf3" path="res://Assets/_buildings/skyscraper_a_outline_mesh.tres" id="2_i1jj2"]
+
+[resource]
+script = ExtResource("1_7rdhp")
+mesh = ExtResource("1_3l6dq")
+outline_mesh = ExtResource("2_i1jj2")
+collision_box_size = Vector3(12, 45, 12)
+light_pos_arr = Array[Vector3]([Vector3(5.85, 44, 5.85), Vector3(-5.85, 44, -5.85), Vector3(-5.85, 44, 5.85), Vector3(5.85, 44, -5.85)])
+color_arr = Array[Color]([Color(0.13333334, 0.078431375, 0.11372549, 1), Color(0.27450982, 0.17254902, 0.27058825, 1), Color(0.41960785, 0.19607843, 0.38039216, 1)])
+outline_color_arr = Array[Color]([Color(0.36862746, 0.4862745, 0.36862746, 1), Color(0.36078432, 0.6117647, 0.47843137, 1)])
+metadata/_custom_type_script = "uid://cy6sfd7tssky5"

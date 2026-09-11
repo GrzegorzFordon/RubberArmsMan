@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://rgjsduyli2m8"]
+
+[resource]
+transparency = 1
+cull_mode = 1
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 2
+disable_ambient_light = true
+disable_specular_occlusion = true
+albedo_color = Color(0.09, 0.09, 0.09, 0.88235295)
+texture_filter = 0
+disable_receive_shadows = true
+proximity_fade_enabled = true
+distance_fade_mode = 1
+distance_fade_min_distance = 150.0
+distance_fade_max_distance = 0.0

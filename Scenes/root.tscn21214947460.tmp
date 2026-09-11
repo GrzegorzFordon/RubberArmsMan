@@ -1,0 +1,157 @@
+[gd_scene format=3 uid="uid://4px2willht8i"]
+
+[ext_resource type="Texture2D" uid="uid://d20es7432diwj" path="res://Assets/Skyboxes/skybox-space.png" id="1_dun2r"]
+[ext_resource type="Shader" uid="uid://dp65sla0csgyc" path="res://Shaders/root.tres" id="2_dun2r"]
+[ext_resource type="Material" uid="uid://cefswf1w37sk5" path="res://Materials/triplanar_mat.tres" id="3_qtxxq"]
+[ext_resource type="PackedScene" uid="uid://bkigp0tjc5kjf" path="res://sCENES/player.tscn" id="4_8fnbn"]
+[ext_resource type="Script" uid="uid://bx2q5wkvtmc3o" path="res://Components/rotator.gd" id="4_dun2r"]
+[ext_resource type="Texture2D" uid="uid://dewllj35shpki" path="res://Assets/Crosshairs/White/crosshair006.png" id="5_a6f85"]
+[ext_resource type="PackedScene" uid="uid://b8j6g6p03g447" path="res://Scenes/interactable_item.tscn" id="7_dun2r"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_pyidc"]
+panorama = ExtResource("1_dun2r")
+
+[sub_resource type="Sky" id="Sky_pyidc"]
+sky_material = SubResource("PanoramaSkyMaterial_pyidc")
+
+[sub_resource type="Environment" id="Environment_vvh5c"]
+background_mode = 2
+sky = SubResource("Sky_pyidc")
+ambient_light_source = 3
+tonemap_mode = 3
+ssao_enabled = true
+ssil_enabled = true
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.02
+volumetric_fog_albedo = Color(0.924308, 0.67708004, 0.6931239, 1)
+
+[sub_resource type="Gradient" id="Gradient_pyidc"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.18815774, 0.33289456, 0.43815774)
+colors = PackedColorArray(0.029655004, 0.0093, 0.03, 1, 0.1064, 0.13287336, 0.19, 1, 0.29010418, 0.46311295, 0.26152197, 1, 0.0672, 0.07599999, 0.12, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ysb6p"]
+gradient = SubResource("Gradient_pyidc")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2nhos"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yi5lw"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_2nhos")
+seamless = true
+normalize = false
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ig65b"]
+noise_type = 0
+frequency = 0.0028
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1c7yr"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_ig65b")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vvh5c"]
+render_priority = 0
+shader = ExtResource("2_dun2r")
+shader_parameter/NoiseOffset_A = Vector3(0.001, -0.001, 0)
+shader_parameter/Noise_A = SubResource("NoiseTexture2D_yi5lw")
+shader_parameter/NoiseOffset_B = Vector3(-0.001, 0.001, 0)
+shader_parameter/Noise_B = SubResource("NoiseTexture2D_1c7yr")
+shader_parameter/Gradient = SubResource("GradientTexture1D_ysb6p")
+
+[node name="Root" type="Node3D" unique_id=1951451545]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1530422215]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_color = Color(0.8839491, 0.8969929, 0.8446955, 1)
+light_energy = 0.3
+shadow_enabled = true
+shadow_opacity = 0.3
+shadow_blur = 1.5
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1896311758]
+environment = SubResource("Environment_vvh5c")
+
+[node name="Env" type="Node3D" parent="." unique_id=844637688]
+
+[node name="Ground" type="CSGBox3D" parent="Env" unique_id=144075619]
+use_collision = true
+collision_layer = 3
+size = Vector3(20, 0.01, 20)
+material = SubResource("ShaderMaterial_vvh5c")
+
+[node name="Boxes" type="Node3D" parent="Env" unique_id=1903327220]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Env/Boxes" unique_id=1262370613]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 5)
+material_override = ExtResource("3_qtxxq")
+use_collision = true
+size = Vector3(2, 2, 2)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Env/Boxes" unique_id=2067052530]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -6)
+material_override = ExtResource("3_qtxxq")
+use_collision = true
+size = Vector3(2, 2, 2)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Env/Boxes" unique_id=1722245250]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -6)
+material_override = ExtResource("3_qtxxq")
+use_collision = true
+size = Vector3(2, 2, 2)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Env/Boxes" unique_id=870595709]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -6)
+material_override = ExtResource("3_qtxxq")
+use_collision = true
+size = Vector3(2, 2, 2)
+
+[node name="Rotator" type="Node" parent="Env/Boxes/CSGBox3D5" unique_id=158263554]
+script = ExtResource("4_dun2r")
+metadata/_custom_type_script = "uid://bx2q5wkvtmc3o"
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Env/Boxes" unique_id=505171849]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0)
+use_collision = true
+size = Vector3(2, 2, 14)
+material = ExtResource("3_qtxxq")
+
+[node name="Player" parent="." unique_id=908945254 instance=ExtResource("4_8fnbn")]
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1066348959]
+
+[node name="TextureRect" type="TextureRect" parent="HUD" unique_id=1276518519]
+self_modulate = Color(0.5, 0.5, 0.5, 0.78431374)
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("5_a6f85")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="InteractableItem" parent="." unique_id=1430432373 instance=ExtResource("7_dun2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0229416, 1.1500002, -1.6189581)
+
+[node name="InteractableItem2" parent="." unique_id=1027664329 instance=ExtResource("7_dun2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0229416, 1.1500002, -0.71895814)
+size = 0.9
+
+[node name="InteractableItem3" parent="." unique_id=555198446 instance=ExtResource("7_dun2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0229416, 1.1500002, -1.2189581)
+
+[node name="InteractableItem4" parent="." unique_id=872678633 instance=ExtResource("7_dun2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0229416, 1.4500003, -1.4189582)
+size = 0.2

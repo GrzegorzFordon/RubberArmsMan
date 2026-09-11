@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cyw7s5onw7uxm"]
+
+[ext_resource type="Script" uid="uid://6drs7km4lqtw" path="res://Scripts/rope.gd" id="1_bqy3k"]
+
+[node name="Rope" type="Node3D" unique_id=444913567]
+script = ExtResource("1_bqy3k")
+
+[node name="Anchor" type="StaticBody3D" parent="." unique_id=740545615]
+
+[node name="PiecesParent" type="Node3D" parent="." unique_id=1407029358]

@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://y0nd0imhb067"]
+
+[ext_resource type="Script" uid="uid://b6molmqj0iwks" path="res://Scripts/vision_cone.gd" id="1_upggy"]
+[ext_resource type="PackedScene" uid="uid://c61ohb3utg6gc" path="res://Scenes/immediate_mesh_controller.tscn" id="2_f4k6l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4k6l"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+disable_specular_occlusion = true
+albedo_color = Color(0.9, 0.78479993, 0.036000017, 0.72156864)
+refraction_scale = -1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_n8bss"]
+material = SubResource("StandardMaterial3D_f4k6l")
+top_radius = 0.1
+bottom_radius = 2.0
+height = 20.0
+radial_segments = 12
+cap_top = false
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wfum3"]
+height = 8.611719
+radius = 0.89
+
+[node name="VisionCone" type="Node3D" unique_id=897993968 node_paths=PackedStringArray("update_timer")]
+script = ExtResource("1_upggy")
+update_timer = NodePath("UpdateTimer")
+
+[node name="ConeMesh" type="MeshInstance3D" parent="." unique_id=1520361495]
+transform = Transform3D(0.258819, -3.239805e-08, -0.96592575, -0.96592575, -4.222196e-08, -0.258819, -3.2398045e-08, 1, -4.2221956e-08, -1.052936e-08, 1.900822e-07, -5.3375)
+sorting_offset = 1.0
+transparency = 0.52
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_n8bss")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=853018358]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1283818267]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -1.882151e-07, -4.3058596)
+shape = SubResource("CylinderShape3D_wfum3")
+
+[node name="UpdateTimer" type="Timer" parent="." unique_id=1216846817]
+wait_time = 0.2
+autostart = true
+
+[node name="ArrayMeshController" parent="." unique_id=425813577 instance=ExtResource("2_f4k6l")]
+visible = false
+radius_top = 0.1
+radius_bottom = 5.0
+segments = 128
+height = 20.0
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

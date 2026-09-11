@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bsxpysxn7coai"]
+
+[ext_resource type="Script" uid="uid://ckaqu1rboysch" path="res://Components/hurt_box.gd" id="1_2ktet"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wfum3"]
+
+[node name="HurtBox" type="Area3D" unique_id=1861914403]
+script = ExtResource("1_2ktet")
+metadata/_custom_type_script = "uid://ckaqu1rboysch"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=882555238]
+shape = SubResource("CapsuleShape3D_wfum3")
+debug_color = Color(0.8796596, 0.29303923, 0.4503227, 0.41960785)

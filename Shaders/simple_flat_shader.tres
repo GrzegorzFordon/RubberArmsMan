@@ -1,0 +1,95 @@
+[gd_resource type="VisualShader" format=3 uid="uid://clw6hed2xfxyw"]
+
+[ext_resource type="Script" uid="uid://ckp66er7olhmv" path="res://addons/shaderV2/rgba/gradientMapping.gd" id="1_61ksn"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_hc6wn"]
+parameter_name = "ColorParameter"
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_fx71h"]
+parameter_name = "ColorMap"
+
+[sub_resource type="VisualShaderNodeColorOp" id="VisualShaderNodeColorOp_fx71h"]
+operator = 4
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_le6qy"]
+source = 5
+
+[sub_resource type="VisualShaderNodeClamp" id="VisualShaderNodeClamp_hc6wn"]
+default_input_values = [0, 0.0, 1, 0.05, 2, 0.95]
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_qo4pr"]
+default_input_values = [1, 1.0, 2, 0.0, 3, false]
+initialized = true
+script = ExtResource("1_61ksn")
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_i1g01"]
+parameter_name = "Texture2DParameter"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_qo4pr"]
+input_name = "diffuse"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_i1g01"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_hc6wn"]
+input_name = "light"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_61ksn"]
+input_name = "normal"
+
+[sub_resource type="VisualShaderNodeDotProduct" id="VisualShaderNodeDotProduct_qo4pr"]
+
+[sub_resource type="VisualShaderNodeClamp" id="VisualShaderNodeClamp_i1g01"]
+default_input_values = [0, 0.0, 1, -0.9, 2, 0.9]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_02msa"]
+input_name = "attenuation"
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_vxdwp"]
+default_input_values = [0, 0.0, 1, 1.0]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_hbj6k"]
+default_input_values = [0, 0.0, 1, 0.1]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_e0pox"]
+default_input_values = [0, 0.0, 1, 2.5]
+operator = 3
+
+[resource]
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_hc6wn")
+nodes/fragment/2/position = Vector2(-155.55556, 155.55556)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture2DParameter_fx71h")
+nodes/fragment/3/position = Vector2(-466.6667, 355.55557)
+nodes/fragment/4/node = SubResource("VisualShaderNodeColorOp_fx71h")
+nodes/fragment/4/position = Vector2(177.77779, 244.44446)
+nodes/fragment/5/node = SubResource("VisualShaderNodeTexture_le6qy")
+nodes/fragment/5/position = Vector2(-66.66667, 400)
+nodes/fragment/connections = PackedInt32Array(2, 0, 4, 0, 4, 0, 0, 0, 3, 0, 5, 2, 5, 0, 4, 1)
+nodes/light/0/position = Vector2(1533.3334, 155.55556)
+nodes/light/2/node = SubResource("VisualShaderNodeInput_hc6wn")
+nodes/light/2/position = Vector2(-377.7778, 111.111115)
+nodes/light/3/node = SubResource("VisualShaderNodeInput_61ksn")
+nodes/light/3/position = Vector2(-377.7778, 200)
+nodes/light/4/node = SubResource("VisualShaderNodeDotProduct_qo4pr")
+nodes/light/4/position = Vector2(-111.111115, 133.33334)
+nodes/light/5/node = SubResource("VisualShaderNodeClamp_i1g01")
+nodes/light/5/position = Vector2(66.66667, 133.33334)
+nodes/light/6/node = SubResource("VisualShaderNodeInput_02msa")
+nodes/light/6/position = Vector2(177.77779, 311.1111)
+nodes/light/7/node = SubResource("VisualShaderNodeFloatOp_vxdwp")
+nodes/light/7/position = Vector2(244.44446, 133.33334)
+nodes/light/8/node = SubResource("VisualShaderNodeFloatOp_hbj6k")
+nodes/light/8/position = Vector2(422.22223, 133.33334)
+nodes/light/9/node = SubResource("VisualShaderNodeFloatOp_e0pox")
+nodes/light/9/position = Vector2(600, 133.33334)
+nodes/light/10/node = SubResource("VisualShaderNodeClamp_hc6wn")
+nodes/light/10/position = Vector2(777.7778, 133.33334)
+nodes/light/11/node = SubResource("VisualShaderNodeCustom_qo4pr")
+nodes/light/11/position = Vector2(1000, 111.111115)
+nodes/light/12/node = SubResource("VisualShaderNodeTexture2DParameter_i1g01")
+nodes/light/12/position = Vector2(644.44446, 288.8889)
+nodes/light/13/node = SubResource("VisualShaderNodeInput_qo4pr")
+nodes/light/13/position = Vector2(1022.2222, 333.33334)
+nodes/light/14/node = SubResource("VisualShaderNodeVectorOp_i1g01")
+nodes/light/14/position = Vector2(1311.1112, 133.33334)
+nodes/light/connections = PackedInt32Array(3, 0, 4, 1, 4, 0, 5, 0, 5, 0, 7, 0, 7, 0, 8, 0, 8, 0, 9, 0, 9, 0, 10, 0, 2, 0, 4, 0, 6, 0, 8, 1, 13, 0, 14, 1, 14, 0, 0, 0)

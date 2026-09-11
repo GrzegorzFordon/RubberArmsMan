@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://cwy32otv40oge"]
+
+[ext_resource type="Script" uid="uid://ddqlopv2imxb6" path="res://Scripts/arm.gd" id="1_kpgs2"]
+[ext_resource type="Script" uid="uid://dw2uy35g3kska" path="res://Scripts/State/state_machine.gd" id="2_8hu3u"]
+[ext_resource type="Script" uid="uid://cp6wijodfcp6h" path="res://Scripts/State/ArmStates/arm_state_idle.gd" id="3_8hu3u"]
+[ext_resource type="Script" uid="uid://b6y1u6wt4nfyo" path="res://Scripts/State/ArmStates/arm_state_grappling.gd" id="4_3ckgi"]
+[ext_resource type="Script" uid="uid://bq02ccd8vfhy8" path="res://Scripts/State/ArmStates/arm_state_holding.gd" id="5_ejfx8"]
+[ext_resource type="Script" uid="uid://dnsj4jlfvtpyt" path="res://Scripts/State/ArmStates/arm_state_jump.gd" id="6_ejfx8"]
+[ext_resource type="Script" uid="uid://5igqgeeamadc" path="res://Scripts/State/ArmStates/arm_state_wall_run.gd" id="7_1whdt"]
+[ext_resource type="Script" uid="uid://bs5w6qlsa0hk1" path="res://Components/hit_box.gd" id="8_cfugf"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_wfum3"]
+radius = 0.2
+height = 0.4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_p5ymw"]
+radius = 0.1
+
+[node name="Arm" type="Node3D" unique_id=704544727 node_paths=PackedStringArray("target_marker", "target_marker_pivot", "hit_box")]
+script = ExtResource("1_kpgs2")
+target_marker = NodePath("TargetMarkerPivot/TargetMarker")
+target_marker_pivot = NodePath("TargetMarkerPivot")
+hit_box = NodePath("HitBox")
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="." unique_id=1577783311]
+remote_path = NodePath("../TargetMarkerPivot")
+update_position = false
+update_scale = false
+
+[node name="TargetMarkerPivot" type="Node3D" parent="." unique_id=2129851105]
+top_level = true
+
+[node name="TargetMarker" type="Marker3D" parent="TargetMarkerPivot" unique_id=958866845]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TargetMarkerPivot/TargetMarker" unique_id=541423583]
+visible = false
+mesh = SubResource("SphereMesh_wfum3")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1979271092]
+process_mode = 4
+script = ExtResource("2_8hu3u")
+metadata/_custom_type_script = "uid://dw2uy35g3kska"
+
+[node name="ArmStateIdle" type="Node" parent="StateMachine" unique_id=469060713]
+script = ExtResource("3_8hu3u")
+metadata/_custom_type_script = "uid://cp6wijodfcp6h"
+
+[node name="ArmStateGrappling" type="Node" parent="StateMachine" unique_id=1900698946]
+script = ExtResource("4_3ckgi")
+metadata/_custom_type_script = "uid://b6y1u6wt4nfyo"
+
+[node name="ArmStateHolding" type="Node" parent="StateMachine" unique_id=16672388]
+script = ExtResource("5_ejfx8")
+metadata/_custom_type_script = "uid://bq02ccd8vfhy8"
+
+[node name="ArmStateJump" type="Node" parent="StateMachine" unique_id=423552947]
+script = ExtResource("6_ejfx8")
+metadata/_custom_type_script = "uid://dnsj4jlfvtpyt"
+
+[node name="ArmStateWallRun" type="Node" parent="StateMachine" unique_id=194919655]
+script = ExtResource("7_1whdt")
+metadata/_custom_type_script = "uid://5igqgeeamadc"
+
+[node name="HitBox" type="Area3D" parent="." unique_id=1874026594]
+transform = Transform3D(0.7536121, -0.52169144, 0.39988267, 0.34279972, 0.8309991, 0.43809628, -0.5608533, -0.1930751, 0.8050867, 0.20056367, 0.028611574, -0.2929575)
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+script = ExtResource("8_cfugf")
+metadata/_custom_type_script = "uid://bs5w6qlsa0hk1"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox" unique_id=930045653]
+shape = SubResource("SphereShape3D_p5ymw")
+
+[connection signal="area_entered" from="HitBox" to="HitBox" method="_on_area_entered"]

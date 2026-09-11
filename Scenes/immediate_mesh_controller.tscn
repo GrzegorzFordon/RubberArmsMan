@@ -1,0 +1,42 @@
+[gd_scene format=4 uid="uid://c61ohb3utg6gc"]
+
+[ext_resource type="Script" uid="uid://cxpwhxopm7ije" path="res://Scripts/array_mesh_controller.gd" id="1_uetx1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnlkp"]
+resource_local_to_scene = true
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+disable_fog = true
+albedo_color = Color(0.85, 0.8315834, 0.2975, 1)
+roughness = 0.0
+disable_receive_shadows = true
+distance_fade_min_distance = 20.0
+distance_fade_max_distance = 0.0
+stencil_flags = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_uetx1"]
+_surfaces = [{
+"aabb": AABB(-124.79996, -12.98233, -209.32582, 65.40515, 97.04429, 39.973892),
+"format": 34359738369,
+"primitive": 4,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 66,
+"vertex_data": PackedByteArray("4oF0wrkfqEJWyEDD7VDQwk6iCEIEmT7DrHN0wqcXqEI7+kDDMMPRwuOMA0IXMkHD7UN0wg4GqEIsKkHDZD3WwlTt50FM6EPDe/Rzwpvrp0JRVkHDlJn5wnBmn0BvgEjDZIhzwlLJp0L5fEHDrmD1wuAWaUCMhUvDzwNzwoWgp0KnnEHD3jLwwgAWA0Ai/03D1GtywsVyp0IjtEHDFkPqwgCshT7X1E/DTMZxwtRBp0KHwkHDwMvjwsBK07+e9FDDkRlxwpMPp0JEx0HDeAzdwsBGZ8BpU1HDSGxwwvHdpkItwkHDn0fWwmCtscCS7VDDGsVvwteupkJys0HDzL/PwnCO7MAEx0/DcipvwhOEpkKmm0HDP7XJwpgBEcEQ603DQ6JuwktfpkKye0HDZmPEwuD+J8EBbEvDyDFuwuhBpkLRVEHDmP6/wvBcOsFlYkjDVN1twgstpkKBKEHDD7K8wghnR8Eg7ETDJahtwoEhpkJ1+EDDPp66wuicTsE/K0HDSJRtwr0fpkKIxkDDlte5wqC3T8GwRD3DfqJtws8npkKjlEDDuGW6wlCsSsHUXjnDPdJtwmg5pkKyZEDDMEO8wqCsP8EBoDXDryFuwttTpkKNOEDDo12/wrgkL8ESLTLDxo1uwiR2pkLlEUDDipbDwji3GcH1Jy/DWxJvwvGepkI38j/DWsTIwgA3AMFfrizDVqpvwrHMpkK72j/DIrTOwsA9x8Cq2CrD3k9wwqL9pkJXzD/DeCvVwlAQisDjuCnDmfxwwuMvp0Kaxz/DwOrbwkB/FsAYWinD4qlxwoVhp0KxzD/Dma/iwgBa077vvynDEFFywp+Qp0Js2z/DbDfpwsCttj9+5irDuOtywmO7p0I48z/D+UHvwmBARkBxwizD53Nzwivgp0IsE0DD0pP0wsAakUCBQS/DYuRzwo79p0INOkDDoPj4wuDWtUAcSzLD1jh0wmsSqEJdZkDDju3Vwqa16kEb5DjDBW50wvUdqEJplkDD2ZzRwvA3BELI5zvD4oF0wrkfqEJWyEDD7VDQwk6iCEIEmT7D")
+}]
+
+[node name="ArrayMeshController" type="Node3D" unique_id=425813577 node_paths=PackedStringArray("mesh_instance")]
+script = ExtResource("1_uetx1")
+mesh_instance = NodePath("MeshInstance3D")
+radius_top = 0.2
+radius_bottom = 2.0
+segments = 64
+height = 9.36
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1430338527]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, 0)
+top_level = true
+material_override = SubResource("StandardMaterial3D_lnlkp")
+transparency = 0.55
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_uetx1")

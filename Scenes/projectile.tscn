@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://d1vyjiixgrqbg"]
+
+[ext_resource type="Script" uid="uid://cvmwhob0st6vk" path="res://Scripts/projectile.gd" id="1_f8cdk"]
+[ext_resource type="PackedScene" uid="uid://d03id7nfbo8qq" path="res://Scenes/hit_box.tscn" id="2_tl4hk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ldla"]
+shading_mode = 0
+albedo_color = Color(1.8247963, 0.8448077, 0.8448077, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_wfum3"]
+material = SubResource("StandardMaterial3D_7ldla")
+radius = 0.1
+height = 0.2
+radial_segments = 12
+rings = 6
+
+[node name="Projectile" type="Node3D" unique_id=221972576]
+top_level = true
+script = ExtResource("1_f8cdk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2132049909]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_wfum3")
+
+[node name="HitBox" parent="." unique_id=1519821754 instance=ExtResource("2_tl4hk")]
+collision_layer = 8
+collision_mask = 8

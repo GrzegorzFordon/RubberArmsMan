@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EnvironmentData" format=3 uid="uid://cyqdpndinqnht"]
+
+[ext_resource type="Script" uid="uid://cyv7jyphqpgo0" path="res://Resources/Environments/environment_data.gd" id="1_wwvrq"]
+[ext_resource type="Texture2D" uid="uid://cb5ke5qqipb8i" path="res://Assets/Skyboxes/skybox-day.png" id="2_1pvfl"]
+
+[resource]
+script = ExtResource("1_wwvrq")
+skybox_texture = ExtResource("2_1pvfl")
+fog_mode = 1
+fog_light_color = Color(0.103999995, 0.11999998, 0.2, 1)
+fog_density = 0.95
+fog_sun_scatter = 0.4
+fog_aerial_perspective = 0.3
+fog_sky_affect = 0.9
+vol_fog_albedo = Color(0.57969266, 0.25326923, 0.29370755, 1)
+vol_fog_emission = Color(0.12094449, 0.053554915, 0.129753, 1)
+metadata/_custom_type_script = "uid://cyv7jyphqpgo0"

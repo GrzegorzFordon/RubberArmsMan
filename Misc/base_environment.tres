@@ -1,0 +1,48 @@
+[gd_resource type="Environment" format=3 uid="uid://c8f8wesjoakxj"]
+
+[ext_resource type="Shader" uid="uid://buvweqysjgxx5" path="res://Shaders/sky_shader.gdshader" id="1_34lp7"]
+[ext_resource type="CompressedTexture3D" uid="uid://bk7s8d6tv2ux7" path="res://Assets/Source_LUTs/02_Hollywood_Film/LUT_Kodak_Gold.png" id="1_c6idd"]
+[ext_resource type="Texture2D" uid="uid://cb5ke5qqipb8i" path="res://Assets/Skyboxes/skybox-day.png" id="2_ay1m4"]
+[ext_resource type="Texture2D" uid="uid://cpbl6xs54bgd6" path="res://Assets/Skyboxes/skybox-night.png" id="3_rnjkq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bbg6u"]
+shader = ExtResource("1_34lp7")
+shader_parameter/exposure = 1.0
+shader_parameter/tex_sky_day = ExtResource("2_ay1m4")
+shader_parameter/tex_sky_night = ExtResource("3_rnjkq")
+shader_parameter/weight = 1.0
+
+[sub_resource type="Sky" id="Sky_pyidc"]
+sky_material = SubResource("ShaderMaterial_bbg6u")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_pyidc")
+reflected_light_source = 2
+tonemap_mode = 3
+tonemap_white = 6.0
+sdfgi_bounce_feedback = 1.0
+sdfgi_y_scale = 0
+glow_enabled = true
+glow_normalized = true
+glow_strength = 0.68
+glow_bloom = 0.44
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.333, 0.34718335, 0.37, 1)
+fog_sun_scatter = 0.31
+fog_density = 0.7834
+fog_aerial_perspective = 0.588
+fog_sky_affect = 0.956
+fog_height = 19.37
+fog_height_density = 0.0225
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.012
+volumetric_fog_albedo = Color(0.6007801, 0.48851657, 0.42844632, 1)
+volumetric_fog_emission = Color(0.1358237, 0.20102379, 0.1579465, 1)
+volumetric_fog_emission_energy = 0.01
+volumetric_fog_length = 125.0
+volumetric_fog_ambient_inject = 1.1
+volumetric_fog_sky_affect = 0.794
+adjustment_enabled = true
+adjustment_color_correction = ExtResource("1_c6idd")
