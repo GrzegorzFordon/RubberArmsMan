@@ -1,0 +1,246 @@
+[gd_scene format=3 uid="uid://dhj2pjtjwoo83"]
+
+[ext_resource type="Script" uid="uid://cikm5ps3rcx6a" path="res://Scripts/homing_missile.gd" id="1_71xl4"]
+[ext_resource type="Texture2D" uid="uid://crh5fsch2akxb" path="res://Assets/Crosshairs/Outline/crosshair069.png" id="2_xdjs4"]
+[ext_resource type="Script" uid="uid://bx2q5wkvtmc3o" path="res://Components/Movement/rotator.gd" id="4_bv3xp"]
+[ext_resource type="Script" uid="uid://bkq116tgdhkox" path="res://Components/noise_sampler.gd" id="5_bv3xp"]
+[ext_resource type="PackedScene" uid="uid://0gfyjvjd0oes" path="res://Scenes/danger_indicator.tscn" id="6_sr0hb"]
+
+[sub_resource type="Gradient" id="Gradient_ogk07"]
+interpolation_mode = 2
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1.8247963, 0, 0.57753843, 1, 1.1930753, 0.9393489, 0.24160141, 1, 0, 0.98, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2oqet"]
+disable_fog = true
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.079195715, 0.07919573, 0.079195715, 1)
+emission_energy_multiplier = 3.87
+rim = 0.62
+rim_tint = 0.7
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wfum3"]
+material = SubResource("StandardMaterial3D_2oqet")
+radius = 0.347
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xdjs4"]
+disable_fog = true
+emission_enabled = true
+emission = Color(0.48525554, 0.054617096, 0.5244046, 1)
+disable_receive_shadows = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_71xl4"]
+material = SubResource("StandardMaterial3D_xdjs4")
+top_radius = 0.2
+height = 3.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_wfum3"]
+material = SubResource("StandardMaterial3D_xdjs4")
+size = Vector3(0.1, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sr0hb"]
+resource_local_to_scene = true
+disable_ambient_light = true
+disable_fog = true
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.83299994, 0, 0.98, 1)
+emission_energy_multiplier = 2.0
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_u53w7"]
+material = SubResource("StandardMaterial3D_sr0hb")
+radius = 1.0
+height = 2.0
+radial_segments = 8
+rings = 4
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wfum3"]
+
+[sub_resource type="Curve" id="Curve_bv3xp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_g8hvj"]
+curve = SubResource("Curve_bv3xp")
+
+[sub_resource type="Gradient" id="Gradient_71xl4"]
+offsets = PackedFloat32Array(0, 0.26866943, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.19570805, 0.19570805, 0.19570805, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d0nnr"]
+gradient = SubResource("Gradient_71xl4")
+
+[sub_resource type="Curve" id="Curve_71xl4"]
+_limits = [0.0, 35.572166, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 35.572166), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_d0nnr"]
+curve = SubResource("Curve_71xl4")
+
+[sub_resource type="Curve" id="Curve_xdjs4"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.47671664, 0.97761226), 0.0, 0.0, 0, 0, Vector2(0.82794005, 0.4800998), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_xdjs4"]
+curve = SubResource("Curve_xdjs4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2oqet"]
+direction = Vector3(0, 0, 0)
+spread = 5.0
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, 1, 10)
+damping_min = 1.0
+damping_max = 2.0
+damping_curve = SubResource("CurveTexture_d0nnr")
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_xdjs4")
+color_ramp = SubResource("GradientTexture1D_d0nnr")
+alpha_curve = SubResource("CurveTexture_g8hvj")
+turbulence_noise_speed_random = 0.0
+collision_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d0nnr"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_wfum3"]
+material = SubResource("StandardMaterial3D_d0nnr")
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g8hvj"]
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+disable_fog = true
+albedo_texture = ExtResource("2_xdjs4")
+billboard_mode = 1
+billboard_keep_scale = true
+fixed_size = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_5ex30"]
+material = SubResource("StandardMaterial3D_g8hvj")
+size = Vector2(0.075, 0.075)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bv3xp"]
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+disable_fog = true
+billboard_mode = 1
+billboard_keep_scale = true
+fixed_size = true
+
+[sub_resource type="TextMesh" id="TextMesh_wfum3"]
+material = SubResource("StandardMaterial3D_bv3xp")
+text = "42"
+horizontal_alignment = 0
+pixel_size = 0.003
+depth = 0.001
+offset = Vector2(2, -10)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5ex30"]
+noise_type = 3
+frequency = 0.1166
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wfum3"]
+noise = SubResource("FastNoiseLite_5ex30")
+seamless = true
+
+[node name="HomingMissile" type="CharacterBody3D" unique_id=1802891292 node_paths=PackedStringArray("mesh_instance_3d", "text_mesh", "danger_indicator", "noise_sampler")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_71xl4")
+speed = 60.0
+max_speed = 100.0
+rotation_speed = 3.0
+min_dist_predict = 10.0
+max_dist_predict = 500.0
+max_predict_time = 1.0
+deviation_amount = 100.0
+deviation_speed = 1.0
+gradient = SubResource("Gradient_ogk07")
+mesh_instance_3d = NodePath("IndicatorMesh")
+text_mesh = NodePath("IndicatorMesh/TextMesh")
+danger_indicator = NodePath("DangerIndicator")
+noise_sampler = NodePath("NoiseSampler")
+
+[node name="Visuals" type="Node3D" parent="." unique_id=591733086]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals" unique_id=432078905]
+transform = Transform3D(1.575, 0, 0, 0, -6.884544e-08, 1.575, 0, -1.575, -6.884544e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_wfum3")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Visuals" unique_id=2059760208]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3.278354e-08, -0.3031428)
+mesh = SubResource("CylinderMesh_71xl4")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Visuals" unique_id=312333847]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 6.556708e-08, 0.4468572)
+mesh = SubResource("CylinderMesh_71xl4")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Visuals" unique_id=1172562783]
+mesh = SubResource("BoxMesh_wfum3")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Visuals" unique_id=1329942380]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_wfum3")
+
+[node name="RoofLight" type="Node3D" parent="Visuals" unique_id=2119574945]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, -1.9276276)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Visuals/RoofLight" unique_id=856014951]
+light_color = Color(1, 0.32, 0.32, 1)
+light_volumetric_fog_energy = 0.604
+omni_attenuation = 0.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals/RoofLight" unique_id=1906124983]
+mesh = SubResource("SphereMesh_u53w7")
+
+[node name="Rotator" type="Node" parent="Visuals/RoofLight/MeshInstance3D" unique_id=172520277]
+script = ExtResource("4_bv3xp")
+speed = 0.1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=894766219]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_wfum3")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1456038254]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.10757291)
+amount = 512
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_2oqet")
+draw_pass_1 = SubResource("QuadMesh_wfum3")
+
+[node name="IndicatorMesh" type="MeshInstance3D" parent="." unique_id=1896009443]
+sorting_offset = 1.0
+visibility_range_begin = 10.0
+visibility_range_begin_margin = 5.0
+visibility_range_end = 400.0
+visibility_range_end_margin = 50.0
+visibility_range_fade_mode = 1
+mesh = SubResource("QuadMesh_5ex30")
+
+[node name="TextMesh" type="MeshInstance3D" parent="IndicatorMesh" unique_id=1069664264]
+visibility_range_begin = 10.0
+visibility_range_begin_margin = 5.0
+visibility_range_end = 400.0
+visibility_range_end_margin = 50.0
+visibility_range_fade_mode = 1
+mesh = SubResource("TextMesh_wfum3")
+
+[node name="NoiseSampler" type="Node" parent="." unique_id=499912449]
+script = ExtResource("5_bv3xp")
+noise_texture = SubResource("NoiseTexture2D_wfum3")
+metadata/_custom_type_script = "uid://bkq116tgdhkox"
+
+[node name="DangerIndicator" parent="." unique_id=2088944142 instance=ExtResource("6_sr0hb")]

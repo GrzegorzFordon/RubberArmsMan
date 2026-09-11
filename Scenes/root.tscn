@@ -31,7 +31,7 @@
 [ext_resource type="Shader" uid="uid://b1d5gxy6x8ajt" path="res://Shaders/Godot-4-interior-mapping-shader-no-cubemap-main/Interior mapping.gdshader" id="29_s0y6o"]
 [ext_resource type="Script" uid="uid://830kiw54kiq3" path="res://Components/grappling_target.gd" id="30_ltirf"]
 [ext_resource type="PackedScene" uid="uid://5rt1akvy3w3b" path="res://Scenes/enemy.tscn" id="33_64fwa"]
-[ext_resource type="Script" uid="uid://b6kfoc6mrtndf" path="res://debug_timer.gd" id="34_51qfo"]
+[ext_resource type="Script" uid="uid://b6kfoc6mrtndf" path="res://Scripts/debug_timer.gd" id="34_51qfo"]
 [ext_resource type="Script" uid="uid://cvo6qj46lu3eq" path="res://Components/day_night.gd" id="35_5k7ik"]
 [ext_resource type="ArrayOccluder3D" uid="uid://cvy0qre0cxb0n" path="res://Misc/root.occ" id="36_207an"]
 [ext_resource type="Resource" uid="uid://cyqdpndinqnht" path="res://Resources/Environments/day_environment_data.tres" id="36_rx7ou"]
@@ -1961,7 +1961,6 @@ distance = 1.5
 cast_shadow = 0
 
 [node name="PathModifier3D" type="PathModifier3D" parent="LevelBig/RoadDecorations/PathMultiMesh3D" unique_id=215896051]
-curve_offset_end = 2389.1572
 position_modifier = Vector3(1, 0, 0)
 rotation_modifier = Vector3(0, 1.5707964, 0)
 
@@ -1975,7 +1974,6 @@ distance = 1.5
 cast_shadow = 0
 
 [node name="PathModifier3D" type="PathModifier3D" parent="LevelBig/RoadDecorations/PathMultiMesh3D2" unique_id=1262129754]
-curve_offset_end = 2364.3362
 position_modifier = Vector3(-1, 0, 0)
 rotation_modifier = Vector3(0, 1.5707964, 0)
 
@@ -1989,7 +1987,6 @@ visible = false
 cast_shadow = 0
 
 [node name="PathModifier3D" type="PathModifier3D" parent="LevelBig/RoadDecorations/LaserPathMultiMesh" unique_id=1936673144]
-curve_offset_end = 2376.6238
 position_modifier = Vector3(-11.625, 38.045, 0)
 position_randomness = Vector3(12.7, 21.155, 0)
 rotation_randomness = Vector3(0, 0, 2.825723)
@@ -2008,7 +2005,6 @@ distance = 60.0
 cast_shadow = 0
 
 [node name="PathModifier3D" type="PathModifier3D" parent="LevelBig/Lights/PathMultiMesh3D2" unique_id=239437865]
-curve_offset_end = 2364.3362
 position_modifier = Vector3(2.405, 0, 0)
 rotation_modifier = Vector3(0, -1.5707964, 0)
 scale_modifier = Vector3(2, 2, 2)
@@ -2022,7 +2018,6 @@ distance = 60.0
 cast_shadow = 0
 
 [node name="PathModifier3D" type="PathModifier3D" parent="LevelBig/Lights/PathMultiMesh3D3" unique_id=778328020]
-curve_offset_end = 2389.1572
 position_modifier = Vector3(-2.405, 0, 0)
 rotation_modifier = Vector3(0, 1.5707964, 0)
 scale_modifier = Vector3(2, 2, 2)
@@ -2037,7 +2032,6 @@ distance = 60.0
 cast_shadow = 0
 
 [node name="PathModifier3D" type="PathModifier3D" parent="LevelBig/Lights/PathMultiMesh3D4" unique_id=1732681422]
-curve_offset_end = 2364.3362
 position_modifier = Vector3(6, 5, 0)
 rotation_modifier = Vector3(0, 1.5707964, 0)
 
@@ -2050,7 +2044,6 @@ distance = 60.0
 cast_shadow = 0
 
 [node name="PathModifier3D" type="PathModifier3D" parent="LevelBig/Lights/PathMultiMesh3D5" unique_id=2020650331]
-curve_offset_end = 2389.1572
 position_modifier = Vector3(-6, 5, 0)
 rotation_modifier = Vector3(0, 1.5707964, 0)
 
@@ -2066,7 +2059,6 @@ visible = false
 cast_shadow = 0
 
 [node name="PathModifier3D" type="PathModifier3D" parent="LevelBig/PathMultiMesh3D" unique_id=1334204592]
-curve_offset_end = 2176.6577
 position_modifier = Vector3(-2.125, 0, 0)
 rotation_modifier = Vector3(0.043145318, -1.5707963, 1.677942e-08)
 rotation_randomness = Vector3(0, 0.12514028, 0)
@@ -2084,7 +2076,6 @@ visible = false
 cast_shadow = 0
 
 [node name="PathModifier3D" type="PathModifier3D" parent="LevelBig/PathMultiMesh3D2" unique_id=1269778652]
-curve_offset_end = 2389.1572
 position_modifier = Vector3(2.405, 0, 0)
 rotation_modifier = Vector3(0.043145318, 1.5707963, -1.677942e-08)
 rotation_randomness = Vector3(0, 0.12514028, 0)
@@ -2123,7 +2114,6 @@ distribution = 1
 distance = 55.0
 
 [node name="PathModifier3D" type="PathModifier3D" parent="LevelBig/BuildingsSystem/PathMultiMesh3D3" unique_id=925806779]
-curve_offset_end = 2389.1572
 position_modifier = Vector3(25, 0, 0)
 position_randomness = Vector3(3, 0, 0)
 rotation_randomness = Vector3(0, 0.26179945, 0)
@@ -2136,7 +2126,6 @@ distribution = 1
 distance = 55.0
 
 [node name="PathModifier3D" type="PathModifier3D" parent="LevelBig/BuildingsSystem/PathMultiMesh3D4" unique_id=393224259]
-curve_offset_end = 2364.3362
 position_modifier = Vector3(-25, 0, 0)
 position_randomness = Vector3(3, 0, 0)
 rotation_modifier = Vector3(0, -3.1415925, 0)
@@ -2149,7 +2138,6 @@ distribution = 1
 distance = 55.0
 
 [node name="PathModifier3D" type="PathModifier3D" parent="LevelBig/BuildingsSystem/PathMultiMesh3D5" unique_id=1821678208]
-curve_offset_end = 286.82352
 position_modifier = Vector3(-25, 0, 0)
 position_randomness = Vector3(3, 0, 0)
 rotation_modifier = Vector3(0, -3.1415925, 0)
@@ -2566,7 +2554,6 @@ alignment = 2
 distance = 55.0
 
 [node name="PathModifier3D" type="PathModifier3D" parent="LevelBig/BuildingsSystem/PathMultiMesh3D6" unique_id=1325616900]
-curve_offset_end = 281.87158
 position_modifier = Vector3(25, 0, 0)
 position_randomness = Vector3(3, 0, 0)
 rotation_modifier = Vector3(0, -3.1415925, 0)

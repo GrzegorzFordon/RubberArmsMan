@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ckp66er7olhmv" path="res://addons/shaderV2/rgba/gradientMapping.gd" id="1_6u7w8"]
 [ext_resource type="Texture2D" uid="uid://imif6usss32x" path="res://Assets/texture_03.png" id="1_uwisy"]
 [ext_resource type="PackedScene" uid="uid://b7hgx35fmngwc" path="res://Assets/Kenney Prototyping/wall-doorway.glb" id="2_1vlfh"]
-[ext_resource type="Script" uid="uid://dw2apvc5ka6et" path="res://csg_building.gd" id="2_4tyd4"]
+[ext_resource type="Script" uid="uid://dw2apvc5ka6et" path="res://Scripts/csg_building.gd" id="2_4tyd4"]
 [ext_resource type="PackedScene" uid="uid://bilrkq5gnp08v" path="res://Assets/Kenney Prototyping/door-rotate.glb" id="3_4tyd4"]
 [ext_resource type="Shader" uid="uid://b1d5gxy6x8ajt" path="res://Shaders/Godot-4-interior-mapping-shader-no-cubemap-main/Interior mapping.gdshader" id="4_1vlfh"]
 [ext_resource type="Script" uid="uid://bx2q5wkvtmc3o" path="res://Components/Movement/rotator.gd" id="6_2cuse"]
