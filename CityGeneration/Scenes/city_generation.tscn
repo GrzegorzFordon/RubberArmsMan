@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://b8kuvrja86w5j"]
+
+[ext_resource type="Script" uid="uid://dqjdihlcoq5cn" path="res://CityGeneration/city_generator.gd" id="1_kd6mj"]
+[ext_resource type="Script" uid="uid://nk0fuskr7q38" path="res://CityGeneration/Structures/tensor_field.gd" id="2_7tkeu"]
+[ext_resource type="Resource" uid="uid://brfambjgqjctk" path="res://CityGeneration/Resources/default_streamline_params.tres" id="2_abxu0"]
+[ext_resource type="Script" uid="uid://crihxo0rkugr5" path="res://CityGeneration/Structures/Fields/grid_field.gd" id="3_3ni46"]
+[ext_resource type="Script" uid="uid://df3cd7lgynden" path="res://CityGeneration/Structures/Fields/noise_field.gd" id="5_3ni46"]
+[ext_resource type="Script" uid="uid://bbijw2otc7ovt" path="res://CityGeneration/Structures/Fields/radial_field.gd" id="5_htmp6"]
+[ext_resource type="Script" uid="uid://dylptecf6vm60" path="res://CityGeneration/Structures/road_group.gd" id="7_htmp6"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3ni46"]
+noise_type = 3
+frequency = 0.0973
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c1cod"]
+noise = SubResource("FastNoiseLite_3ni46")
+seamless = true
+
+[node name="Parent" type="Control" unique_id=1831936843]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="." unique_id=2104214981]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=2085700456]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.17353752, 0.17353752, 0.17353752, 1)
+
+[node name="CityGeneration" type="Control" parent="." unique_id=1057416165 node_paths=PackedStringArray("tensor_field", "timer")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_kd6mj")
+world_size = Vector2(20, 10)
+tensor_field = NodePath("TensorField")
+timer = NodePath("Timer")
+scalar = 20.0
+default_streamline_params = ExtResource("2_abxu0")
+tensor_line_width = 2.0
+
+[node name="Timer" type="Timer" parent="CityGeneration" unique_id=1581108701]
+wait_time = 0.05
+autostart = true
+
+[node name="TensorField" type="Node" parent="CityGeneration" unique_id=929417166]
+script = ExtResource("2_7tkeu")
+smooth = true
+diameter = 0.4
+
+[node name="NoiseField" type="Node" parent="CityGeneration/TensorField" unique_id=1275325969]
+script = ExtResource("5_3ni46")
+noise_texture = SubResource("NoiseTexture2D_c1cod")
+enabled = true
+center = Vector2(-13.78, -5.545)
+size = 9.36
+decay = 26.825
+debug_color = Color(0.8828014, 0.640061, 0.9273856, 1)
+
+[node name="GridField" type="Node" parent="CityGeneration/TensorField" unique_id=1420195808]
+script = ExtResource("3_3ni46")
+angle = 29.62
+enabled = true
+center = Vector2(4.835, -7.735)
+size = 6.495
+decay = 11.775
+debug_color = Color(1, 0.4745098, 0.5137255, 0.49411765)
+
+[node name="RadialField" type="Node" parent="CityGeneration/TensorField" unique_id=1375997327]
+script = ExtResource("5_htmp6")
+enabled = true
+center = Vector2(3.415, 5.96)
+size = 5.785
+decay = 55.395
+debug_color = Color(0.13719252, 0.366791, 0.38063994, 1)
+metadata/_custom_type_script = "uid://bbijw2otc7ovt"
+
+[node name="Roads" type="Node" parent="CityGeneration" unique_id=336866137]
+process_mode = 4
+
+[node name="RoadGroupMain" type="Node" parent="CityGeneration/Roads" unique_id=945368844]
+script = ExtResource("7_htmp6")
+metadata/_custom_type_script = "uid://dylptecf6vm60"
+
+[node name="RoadGroupMajor" type="Node" parent="CityGeneration/Roads" unique_id=739042166]
+script = ExtResource("7_htmp6")
+metadata/_custom_type_script = "uid://dylptecf6vm60"
+
+[node name="RoadGroupMinor" type="Node" parent="CityGeneration/Roads" unique_id=1865661865]
+script = ExtResource("7_htmp6")
+metadata/_custom_type_script = "uid://dylptecf6vm60"

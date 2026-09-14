@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://b8kuvrja86w5j"]
+
+[ext_resource type="Script" uid="uid://dqjdihlcoq5cn" path="res://CityGeneration/city_generator.gd" id="1_kd6mj"]
+[ext_resource type="Script" uid="uid://nk0fuskr7q38" path="res://CityGeneration/Structures/tensor_field.gd" id="2_7tkeu"]
+[ext_resource type="Script" uid="uid://crihxo0rkugr5" path="res://CityGeneration/Structures/Fields/grid_field.gd" id="3_3ni46"]
+[ext_resource type="Script" uid="uid://bbijw2otc7ovt" path="res://CityGeneration/Structures/Fields/radial_field.gd" id="5_htmp6"]
+
+[node name="Parent" type="Control" unique_id=1831936843]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="." unique_id=2104214981]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=2085700456]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.17353752, 0.17353752, 0.17353752, 1)
+
+[node name="CityGeneration" type="Control" parent="." unique_id=1057416165 node_paths=PackedStringArray("tensor_field")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_kd6mj")
+world_size = Vector2(5, 5)
+tensor_field = NodePath("TensorField")
+offset = Vector2(13.4, 0)
+scalar = 17.59
+tensor_line_width = 2.0
+
+[node name="TensorField" type="Node" parent="CityGeneration" unique_id=929417166]
+script = ExtResource("2_7tkeu")
+diameter = 1.0
+
+[node name="GridField" type="Node" parent="CityGeneration/TensorField" unique_id=1420195808]
+script = ExtResource("3_3ni46")
+
+[node name="RadialField" type="Node" parent="CityGeneration/TensorField" unique_id=399633848]
+script = ExtResource("5_htmp6")

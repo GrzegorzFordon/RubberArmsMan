@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="StreamlineParams" format=3 uid="uid://brfambjgqjctk"]
+
+[ext_resource type="Script" uid="uid://bxns4xny77d3r" path="res://CityGeneration/Streamlines/streamline_params.gd" id="1_undli"]
+
+[resource]
+script = ExtResource("1_undli")
+sep = 100.0
+test = 50.0
+step = 1.0
+lookahead = 500.0
+circleJoin = 5000.0
+joinAngle = 0.1
+pathIterations = 500.0
+seedTries = 300.0
+simplifyTolerance = 0.013
+metadata/_custom_type_script = "uid://bxns4xny77d3r"
